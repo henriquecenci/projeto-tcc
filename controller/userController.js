@@ -43,53 +43,27 @@ const userController = {
 
     //----------------------------------------------------------------------------------
 
-    anunciante: (req, res) => {
+    cadastro: (req, res, tipo_usuario) => {
         var form = new formidable.IncomingForm();
         form.parse(req, (err, fields, files) => {
-            var anunciante = 1;
-            var oldpath = files.imagem.filepath;
-            var hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
-            var img = hash + '.' + files.imagem.mimetype.split('/')[1]
-            var newpath = path.join(__dirname, '../public/imagens/', img);
+            let img = null;
 
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-            });
-
-            bcrypt.hash(fields['senha'], saltRounds, function (err, hash) {
-                var sql = "INSERT INTO usuario (nome, email, senha, foto_perfil, tipo_usuario) VALUES ?";
-                var values = [
-                    [fields['nome'], fields['email'], hash, img, anunciante]
-                ];
-                con.query(sql, [values], function (err, result) {
+            if(files.imagem.size > 0){
+                var oldpath = files.imagem.filepath;
+                var hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
+                img = hash + '.' + files.imagem.mimetype.split('/')[1]
+                var newpath = path.join(__dirname, '../public/imagens/', img);
+    
+                fs.rename(oldpath, newpath, function (err) {
                     if (err) throw err;
-                    console.log("Numero de registros inseridos: " + result.affectedRows);
                 });
-            });
-        });
-        res.redirect('/login');
-    },
+            }
 
-    candidato: (req, res) => {
-        console.log("bolsonaro")
-        var form = new formidable.IncomingForm();
-        form.parse(req, (err, fields, files) => {
-            console.log("lula")
-            var candidato = 2 ;
-            var oldpath = files.imagem.filepath;
-            var hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
-            var img = hash + '.' + files.imagem.mimetype.split('/')[1]
-            var newpath = path.join(__dirname, '../public/imagens/', img);
-            console.log("haddad")
-            fs.rename(oldpath, newpath, function (err) {
-                if (err) throw err;
-            });
-
+            
             bcrypt.hash(fields['senha'], saltRounds, function (err, hash) {
-                console.log("possebom")
                 var sql = "INSERT INTO usuario (nome, email, senha, foto_perfil, tipo_usuario) VALUES ?";
                 var values = [
-                    [fields['nome'], fields['email'], hash, img, candidato]
+                    [fields['nome'], fields['email'], hash, img, tipo_usuario]
                 ];
                 con.query(sql, [values], function (err, result) {
                     if (err) throw err;

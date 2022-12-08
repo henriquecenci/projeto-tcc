@@ -49,7 +49,7 @@ app.get('/candidato', function (req, res) {
 });
 
 app.post('/candidato', function (req, res) {
-    userController.candidato(req,res);
+    userController.cadastro(req, res, "candidato");
 });
 
 //cadastro anunciante----------------------------
@@ -58,7 +58,7 @@ app.get('/anunciante', function (req, res) {
 });
 
 app.post('/anunciante', function (req, res) {
-    userController.anunciante(req,res);
+    userController.cadastro(req, res, "anunciante");
 });
 
 //logout----------------------------------------

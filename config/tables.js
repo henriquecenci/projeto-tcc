@@ -8,7 +8,7 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
   if (err) throw err;
-  var sql = "CREATE TABLE usuario (id_usuario INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(20) NOT NULL, email VARCHAR(30) UNIQUE NOT NULL, senha VARCHAR(255) NOT NULL, foto_perfil VARCHAR(255), tipo_usuario INT NOT NULL)";
+  var sql = "CREATE TABLE usuario (id_usuario INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(20) NOT NULL, email VARCHAR(30) NOT NULL, senha VARCHAR(255) NOT NULL, foto_perfil VARCHAR(255), tipo_usuario VARCHAR(10) NOT NULL)";
 
   con.query(sql, function (err, result) {
     if (err) throw err;
