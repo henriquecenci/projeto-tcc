@@ -1,0 +1,45 @@
+html, body{
+    height: 0%;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #12335E;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.bloco {
+    background: #fff;
+    padding: 35px;
+    border-radius: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#textarea1{
+    height: 80%;
+}
+#textarea2{
+    height: 72%;
+}
+form{
+    font-size: large;
+}
+
+.form-check{
+    display: inline;
+}
+
+.img{
+    width: 85%;
+    height: 95%;
+    margin-left: 3%;
+    margin-top: 5%;
+}

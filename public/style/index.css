@@ -3,10 +3,8 @@ html, body{
     margin:0;
     padding:0;
 }
-
 .carousel-item {
     height: 60vh;
-    min-height: 300px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -22,7 +20,6 @@ html, body{
     font-size: 45px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: 25px;
 }
 
 .carousel-caption p {
@@ -32,6 +29,9 @@ html, body{
     line-height: 1.9;
 }
 
+nav{
+    font-weight: bold;
+}
 .navbar-light .navbar-brand {
     color: black;
     font-size: 25px;
@@ -101,19 +101,20 @@ html, body{
 
 #empresario{
     position: relative;
-    margin-right: 20%;
-    margin-top: -27.3%;
+    margin-right: -7%;
+    margin-top: -46.3%;
+    transform: scale(0.8);
 }
 
 #estagiario{
     position: relative;
-    margin-left: -21%;
+    margin-left: -65%;
     margin-top: -943px;
     transform: scale(0.3);
 }
 
 button{
-    margin-top: -45%;
+    margin-top: -75%;
 }
 
 /* ----------------------------------------------------------------------- */

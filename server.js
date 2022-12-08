@@ -69,11 +69,11 @@ app.get('/logout',function(req,res){
 });
 
 //anunciar Vaga---------------------------------
-app.get('/anunciarVaga', function (req, res) {
+app.get('/anunciar', function (req, res) {
     res.render('anunciarVaga.ejs');
 });
 
-app.post('/anunciarVaga', function(req, res){
+app.post('/anunciar', function(req, res){
     vagaController.anunciar (req, res);
 });
 
