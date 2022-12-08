@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<%- include('head'); %>
+<link rel="stylesheet" href="style/style_anunciar.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="bloco">
+
+    <form method="POST" action="/anunciarVaga" enctype="multipart/form-data">
+        <br>
+        <h2><p align="center"> Anunciar Vaga </p></h2>
+        <br>
+            <div class="row">
+                <div class="col">
+                    <label for="titulo">Titulo da vaga:</label><br>
+                    <p align="center"><input type="text" class="form-control" id="titulo" placeholder="Digite o titulo da vaga" name="titulo" required></p>
+                </div>
+            
+                <div class="col">
+                    <label for="descricao">Descrição da vaga</label>
+                    <textarea class="form-control" placeholder="Digite a descrição da vaga" rows="3" name="descricao"></textarea>
+                </div>
+            </div><br>
+            
+            <div class="row">
+                <div class="col"  style="margin-top: -7.4%;">
+                    <label for="Beneficios">Benefícios:</label><br>
+                    <select class="form-select" aria-label="Default select example" name="beneficios">
+                        <option value="VR" selected>Vale refeição</option>
+                        <option value="VT">Vale transporte</option>
+                        <option value="SV">Seguro de vida</option>
+                    </select>
+                </div>
+           
+
+                <div class="col" style="margin-top: 3%;">
+                    <label for="requisitos">Requisitos e qualificações</label>
+                    <textarea class="form-control" placeholder="Digite os requisitos e qualificações desejados para a vaga" rows="3" name="requisitos"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="salario" class="salario">Salário:</label><br>
+                <p align="left"><input type="number" class="form-control" id="salario" placeholder="Digite o salário" name="salario" required></p>
+            </div>
+
+            <div class="form-group">
+                <label for="carga_horaria" class="carga_horaria">Carga horária:</label><br>
+                <p align="left"><input type="number" class="form-control" id="carga_horaria" placeholder="Digite a carga horária" name="carga_horaria" required></p>
+            </div>
+            
+            <div class="form-group">
+                <label for="Beneficios">Localização:</label><br>
+                <select class="form-select" aria-label="Default select example" name="cidade">
+                    <option value="GR" selected>Gravataí - RS</option>
+                    <option value="POA">Porto Alegre - RS</option>
+                    <option value="CX">Cachoeirinha - RS</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Beneficios">Horário de trabalho:</label><br>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault1" value="manha" checked>
+                <label class="form-check-label" for="flexRadioDefault1">Manhã</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="turno" value="tarde" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">Tarde</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="turno" value="integral" id="flexRadioDefault3">
+                <label class="form-check-label" for="flexRadioDefault2">Integral</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Beneficios">Tipo de vaga:</label><br>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault" value="estagio" checked>
+                <label class="form-check-label" for="flexRadioDefault1">Estágio</label>
+                </div>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="tipo_vaga" value="jovem_aprendiz" id="flexRadioDefault0">
+                <label class="form-check-label" for="flexRadioDefault2">Jovem Aprendiz</label>
+                </div>
+            </div><br>
+
+            <img src="img/anunciar.png" alt="anunciar" class="img">
+
+            <p align="center"><input class='btn btn-outline-warning btn-lg' type="submit" name="submit" value="⠀⠀⠀⠀Anunciar⠀⠀⠀⠀"></p>
+    </form>
+</div>
+</div>
+</body>
+</html>

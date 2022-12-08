@@ -1,0 +1,67 @@
+html, body{
+    height: 0%;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #12335E;
+}
+
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.bloco {
+    position: absolute;
+    width: 40%;
+    height: 90%;
+    background: #fff;
+    padding: 35px;
+    border-radius: 2%;
+}
+
+textarea{
+    height: 100%;
+}
+form{
+    font-size: large;
+}
+#salario, #carga_horaria{
+    width: 48%;
+}
+
+#salario{
+    margin-top: -16.3%;
+}
+.salario{
+    margin-top: -15.5%;
+    position: absolute;
+}
+
+#carga_horaria{
+margin-top: -6.7%;
+}
+
+.carga_horaria{
+    margin-top: -7%;
+    position: absolute;
+}
+
+.form-check{
+    display: inline;
+}
+
+.img{
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    margin-left: 53%;
+    margin-top: -34%;
+}

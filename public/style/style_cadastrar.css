@@ -1,0 +1,66 @@
+html, body{
+    height: 0%;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #12335E;
+}
+
+img{
+    position: absolute;
+    margin-top: 8%;
+    margin-left: 22%;
+    border-radius: 2%;
+    width: 30%;
+    height: 69%;
+}
+.bloco{
+    position: absolute;
+    width: 30%;
+    height: 69%;
+    background-color: black;
+    border-radius: 2%;
+    margin-top: 8%;
+    margin-left: 50%;
+    align-items: center;
+}
+
+h4{
+    color: azure;
+    position: absolute;
+    margin-top: -10%;
+    margin-left: 33%;
+}
+
+p{
+    color: white;
+}
+form{
+    margin-top: 16%;
+}
+.jobsource{
+    position: absolute;
+    font-size: 25px;
+    margin-top: -15%;
+    margin-left: 2%;
+    color: #243b55;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.form-control {
+    width: 54%;
+}
+label {
+    color: white;
+    margin-left: 23%;
+}
+.form{
+    margin-top: 10%; 
+}
+span{
+    color: cyan;
+
+}

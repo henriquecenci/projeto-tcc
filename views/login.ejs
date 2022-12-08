@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<%- include('head'); %>
+<link rel="stylesheet" href="style/style_login.css">
+</head>
+<body class="body">
+    <img src="img/imgbloco2.png" alt="imagem">
+    <div class="bloco">
+
+    <form method="POST" action="/login" enctype="multipart/form-data">
+        <br>
+       <h4>Área de Login</h4>
+        <br>
+            <div class="form-group">
+                <label for="email">E-mail:</label><br>
+                <p align="center"><input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" required></p>
+                <p align="center"><h5><%= mensagem %></h5></p>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label><br>
+                <p align="center"><input type="password" class="form-control" id="senha" placeholder="Digite uma senha" name="senha" required></p>
+                <p align="center"><h5><%= mensagem %></h5></p>
+            </div>
+            <br>
+
+            <p align="center"><input class='btn btn-outline-success btn-lg' type="submit" name="submit" value="⠀⠀⠀⠀Entrar⠀⠀⠀⠀"></p>
+
+    </form>
+</div>
+
+</body>
+</html>

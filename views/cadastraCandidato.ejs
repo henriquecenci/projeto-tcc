@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<%- include('head'); %>
+<link rel="stylesheet" href="style/style_cadastrar.css">
+</head>
+<body class="body">
+    <img src="img/imgbloco.png" alt="imagem">
+    <div class="bloco">
+
+    <form method="POST" action="/candidato" enctype="multipart/form-data">
+        <br>
+        <h4>Área de cadastro</h4>
+        <br>
+            <div class="form-group">
+                <label for="Nome">Nome de usuário:</label><br>
+                <p align="center"><input type="text" class="form-control" id="nome" placeholder="Digite seu nome" name="nome" required></p>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label><br>
+                <p align="center"><input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" required></p>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label><br>
+                <p align="center"><input type="password" class="form-control" id="senha" placeholder="Digite uma senha" name="senha" required></p>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto de perfil:</label><br>
+                <p align="center"><input class="form-control" type="file" id="formFile"></p>
+            </div><br>
+
+            <p align="center"><input class='btn btn-outline-primary btn-lg' type="submit" name="submit" value="⠀⠀⠀⠀Cadastrar⠀⠀⠀⠀"></p>
+    </form>
+
+    <p align="center">Já tem um cadastro? <a href="/login"><span>logar-se agora.</span></a></p> 
+</div>
+
+</body>
+</html>
