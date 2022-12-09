@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<%- include('head'); %>
-<link rel="stylesheet" href="style/style_login.css">
+    <%- include('head'); %>
+        <link rel="stylesheet" href="style/login.css">
 </head>
+
 <body class="body">
-    <img src="img/imgbloco2.png" alt="imagem">
+    <p align="left"><a href="/"><button type="button" class="btn btn-outline-light" id="voltar">Voltar</button></a></p>
+
+    <img src="img/imgbloco3.png" alt="imagem">
     <div class="bloco">
 
-    <form method="POST" action="/login" enctype="multipart/form-data">
-        <br>
-       <h4>Área de Login</h4>
-        <br>
+        <form method="POST" action="/login" enctype="multipart/form-data">
+            <h4>Área de Login</h4>
+            <p align="center"><h5><%= mensagem %></h5></p>
             <div class="form-group">
                 <label for="email">E-mail:</label><br>
-                <p align="center"><input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" required></p>
-                <p align="center"><h5><%= mensagem %></h5></p>
+                <p align="center"><input type="email" class="form-control" id="email" placeholder="Digite seu e-mail"
+                        name="email" required></p>
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha:</label><br>
-                <p align="center"><input type="password" class="form-control" id="senha" placeholder="Digite uma senha" name="senha" required></p>
-                <p align="center"><h5><%= mensagem %></h5></p>
+                <p align="center"><input type="password" class="form-control" id="senha" placeholder="Digite sua senha"
+                        name="senha" required></p>
             </div>
             <br>
 
-            <p align="center"><input class='btn btn-outline-success btn-lg' type="submit" name="submit" value="⠀⠀⠀⠀Entrar⠀⠀⠀⠀"></p>
-
-    </form>
-</div>
+            <p align="center"><input class='btn btn-outline-success btn-lg' type="submit" name="submit"
+                    value="⠀⠀⠀Entrar⠀⠀⠀"></p>
+            <p align="center">Ainda não é cadastro? <a href="/login"><span>Cadastre-se agora.</span></a></p>
+        </form>
+    </div>
 
 </body>
+
 </html>

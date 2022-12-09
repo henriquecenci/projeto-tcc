@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <%- include('head'); %>
-<link rel="stylesheet" href="style/style_cadastrar_anunciante.css">
+<link rel="stylesheet" href="style/cadastro.css">
 </head>
-<body class="body">
-    <img src="img/imgbloco3.png" alt="imagem">
-    <div class="bloco">
 
+<body class="body">
+    <p align="left"><a href="/"><button type="button" class="btn btn-outline-light" id="voltar">Voltar</button></a></p>
+    <img src="img/imgbloco2.png" alt="imagem">
+
+    <div class="bloco">
     <form method="POST" action="/anunciante" enctype="multipart/form-data">
-        <br>
-        <h4>Cadastrar-se como Anunciante</h4>
-        <br>
             <div class="form-group">
                 <label for="Nome">Anunciante:</label><br>
                 <p align="center"><input type="text" class="form-control" id="nome" placeholder="Digite seu nome" name="nome" required></p>
@@ -28,14 +28,14 @@
             </div>
 
             <div class="form-group">
-                <label for="foto">Foto de perfil:</label><br>
-                <p align="center"><input type="file" class="form-control" name="imagem"></p>
+                <label for="foto">Foto de perfil (Opcional):</label><br>
+                <p align="center"><input type="file" class="form-control-sm" name="imagem"></p>
             </div><br>
 
-            <p align="center"><input class='btn btn-outline-info btn-lg' type="submit" name="submit" value="⠀⠀⠀⠀Cadastrar⠀⠀⠀⠀"></p>
+            <p align="center"><input class='btn btn-outline-info btn-lg' type="submit" name="submit" value="⠀⠀⠀Cadastrar-se⠀⠀⠀"></p>
     </form>
 
-    <p align="center">Já tem um cadastro? <a href="/login"><span>logar-se agora.</span></a></p> 
+    <p align="center">Já é um anunciante? <a href="/login"><span>logar-se agora.</span></a></p> 
 </div>
 
 </body>

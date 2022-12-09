@@ -10,7 +10,6 @@ body{
 
 img{
     position: absolute;
-    margin-top: 8%;
     margin-left: 50%;
     border-radius: 2%;
     width: 30%;
@@ -21,10 +20,9 @@ img{
     width: 30%;
     height: 69%;
     background-color: black;
-    border-radius: 2%;
-    margin-top: 8%;
+    border-radius: 2% 0 0 2%;
     margin-left: 22%;
-    align-items: center;
+    padding-top: 6%;
 }
 
 h4{
@@ -37,20 +35,20 @@ h4{
 p{
     color: white;
 }
-form{
-    margin-top: 30%;
-}
 
 .form-control {
-    width: 54%;
+    width: 80%;
 }
 label {
     color: white;
-    margin-left: 23%;
+    padding-left: 10%;
 }
-.form{
-    margin-top: 10%; 
-}
+
 span{
     color: cyan;
+}
+
+#voltar{
+    margin-top: 1%;
+    margin-left: 2%;
 }
