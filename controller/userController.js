@@ -1,5 +1,4 @@
 const express = require('express');
-const mysql = require('mysql');
 const formidable = require('formidable');
 const fs = require('fs');
 const crypto = require('crypto');
@@ -59,7 +58,6 @@ const userController = {
                 });
             }
 
-            
             bcrypt.hash(fields['senha'], saltRounds, function (err, hash) {
                 var sql = "INSERT INTO usuario (nome, email, senha, foto_perfil, tipo_usuario) VALUES ?";
                 var values = [
@@ -73,7 +71,6 @@ const userController = {
         });
         res.redirect('/login');
     }
-
 }
 
 
