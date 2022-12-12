@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('head'); %>
+    <link rel="stylesheet" href="style/vagas.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <div class="filtro">
+                    <form method="GET" action="/vagas" enctype="multipart/form-data">
+                        <h4>Filtros</h4>
+                        <div class="form-group" met>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="todos" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">Todos</label><br>
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="jovem_aprendiz" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">Jovem aprendíz</label><br>
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault3" value="estagio" checked>
+                                <label class="form-check-label" for="flexRadioDefault3">Estágio</label><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Localização:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="cidade">
+                                <option value="todas" selected>Todas</option>
+                                <option value="GR">Gravataí - RS</option>
+                                <option value="POA">Porto Alegre - RS</option>
+                                <option value="CX">Cachoeirinha - RS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Salário:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="salario">
+                                <option value="todos" selected>Todos</option>
+                                <option value=">1000">até R$ 1.000</option>
+                                <option value=">2000">até R$ 2.000</option>
+                                <option value=">3000">até R$ 1.000.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Turno:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="turno">
+                                <option value="todos" selected>Todos</option>
+                                <option value="manha">Manhã</option>
+                                <option value="tarde">Tarde</option>
+                                <option value="integral">Integral</option>
+                            </select>
+                        </div><br>
+                        <p align="center"><button type="submit" class="btn btn-dark">⠀⠀⠀⠀Filtrar⠀⠀⠀⠀</button></p>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6">
+                <% vagas.forEach(function(vaga) { %>
+                    <div class="card mt-2" style="max-width: 30rem; min-height: 10rem;">
+                        <div class="card-body justify-content-center"  id="vagas">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 20%; padding-top: 2%;">
+                                </div>
+                                <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">Nome anunciante / <%= vaga.localizacao %></h6>
+                            <p class="card-text"><%= vaga.descricao %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>  
+</body>
+
+</html>

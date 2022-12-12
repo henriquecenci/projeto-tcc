@@ -9,6 +9,7 @@ body{
 }
 
 img{
+    margin-top: 3%;
     position: absolute;
     margin-left: 50%;
     border-radius: 2%;
@@ -16,13 +17,14 @@ img{
     height: 69%;
 }
 .bloco{
+    margin-top: 3%;
     position: absolute;
     width: 30%;
     height: 69%;
     background-color: black;
     border-radius: 2% 0 0 2%;
     margin-left: 22%;
-    padding-top: 6%;
+    padding-top: 7%;
 }
 
 h4{

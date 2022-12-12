@@ -1,21 +1,10 @@
 const express = require('express');
 var session = require('express-session');
-const mysql = require('mysql');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use( express.static("public") );
-
-const userController = require("./controller/userController");
-const vagaController = require("./controller/vagaController");
-
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "tcc"
-  });
 
 app.use(session({
     secret: '2C44-4D44-WppQ38S',
@@ -23,6 +12,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+const userController = require("./controller/userController");
+const vagaController = require("./controller/vagaController");
+
+con = require("./config/db.js").pool;
 
 //index-----------------------------------------
 app.get('/', function (req, res) {
@@ -31,7 +24,7 @@ app.get('/', function (req, res) {
 		nome = req.session.username;
 	else 
 		nome = null;
-    res.render('index.ejs', {usuario: nome});
+    res.render('index.ejs', {logado: nome});
 });
 
 //login-----------------------------------------
@@ -77,6 +70,14 @@ app.post('/anunciar', function(req, res){
     vagaController.anunciar (req, res);
 });
 
+//usuario----------------------------------------
+app.get('/usuario', function(req, res){
+});
+
+//listar----------------------------------------
+app.get('/vagas', function(req, res){
+    vagaController.listar(req, res);
+});
 //-----------------------------------------------
 app.listen(80, function () {
     console.log("Servidor executando na porta 80");

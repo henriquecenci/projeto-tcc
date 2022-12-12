@@ -15,6 +15,16 @@ const vagaController = {
             });
         });
         res.redirect('/vagas');
+    },
+
+    //------------------------------------------------------------------------------------------------------------------------------
+
+    listar: (req, res) => {
+        var sql = "SELECT * FROM vaga"
+        con.query(sql, function (err, result, fields) {
+            if (err) throw err;
+            res.render('vagas.ejs', { vagas: result })
+        });
     }
 }
 
