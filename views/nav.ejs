@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed">
     <div class="container">
         <a class="navbar-brand" href="#">JobSource</a>
-
-        <%if(logado){ %>
+        <% if(logado && logado.tipo_usuario == "candidato"){ %>
             <div class="navbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -15,32 +14,55 @@
                         <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/usuario"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 40%;"></a>
+                        <% if(logado.foto_perfil != null){ %>
+                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="max-width: 50px"></a>
+                        <% }else{ %>    
+                            <a class="nav-link" href="/usuario"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 40%;"></a>
+                        <%}%>
                     </li>
                 </ul>
             </div>
-
-
-        <% }else{%>
-        <div class="navbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Início</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/vagas">Ver Vagas</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/candidato">Cadastrar-se</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/login">Logar-se</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/anunciante">Virar Anunciante</a>
-                </li>
-            </ul>
-        </div>
+        <% }else if(logado && logado.tipo_usuario == "anunciante"){%>
+            <div class="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><button type="button" class="btn btn-info" style="margin-top: 4px;">Início</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/anunciar"><button type="button" class="btn btn-success" style="margin-top: 4px;">Anunciar</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <% if(logado.foto_perfil != null){ %>
+                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="max-width: 50px;"></a>
+                        <% }else{ %>    
+                            <a class="nav-link" href="/usuario"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 40%;"></a>
+                        <%}%>
+                    </li>
+                </ul>
+            </div>
+        <% }else{ %>
+            <div class="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Início</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/vagas">Ver Vagas</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/candidato">Cadastrar-se</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/login">Logar-se</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/anunciante">Virar Anunciante</a>
+                    </li>
+                </ul>
+            </div>
         <%}%>
     </div>
 </nav>

@@ -14,27 +14,25 @@ const userController = {
         var form = new formidable.IncomingForm();
         form.parse(req, function (err1, fields, files) {
             var senha = fields.senha;
-            var sql = "SELECT * FROM usuario where email = '" + fields.email + "'";
-
+            var sql ="SELECT * FROM usuario where email = '" + fields.email +"'";
             con.query(sql, function (err, result) {
                 if (err) throw err;
-                if (result.length) {
-                    bcrypt.compare(senha, result[0]['senha'], function (err, resultado) {
+                if(result.length){
+                    bcrypt.compare(senha, result[0]['senha'], function(err, resultado) {
                         if (err) throw err;
-                        if (resultado) {
-
+                        if (resultado){
                             req.session.loggedin = true;
-                            req.session.username = result[0]['nome'];
-                            res.redirect('/usuario');
-
-                        } else {
-                            res.render('login.ejs', { mensagem: "senha esta incorreta" });
-
+                            req.session.userdata = result[0];
+                            res.redirect('/');
+                            res.end();
+                        }else{
+                            res.render('login.ejs', {mensagem: "senha esta incorreta"});
+                            res.end();
                         }
                     });
-                } else {
-                    res.render('login.ejs', { mensagem: "email esta incorreto", });
-
+                }else{
+                    res.render('login.ejs', {mensagem: "email esta incorreto",});
+                    res.end();
                 }
             });
         });

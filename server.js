@@ -19,12 +19,10 @@ con = require("./config/db.js").pool;
 
 //index-----------------------------------------
 app.get('/', function (req, res) {
-    var nome
-	if(req.session.username)	
-		nome = req.session.username;
+	if(req.session.loggedin)	
+        res.render('index.ejs', {logado: req.session.userdata});
 	else 
-		nome = null;
-    res.render('index.ejs', {logado: nome});
+        res.render('index.ejs', {logado: null});
 });
 
 //login-----------------------------------------
