@@ -70,11 +70,15 @@ app.post('/anunciar', function(req, res){
 
 //usuario----------------------------------------
 app.get('/usuario', function(req, res){
+    if(req.session.loggedin)	
+        res.render('usuario.ejs', {logado: req.session.userdata});
+	else 
+        res.render('usuario.ejs', {logado: null});
 });
 
 //listar----------------------------------------
 app.get('/vagas', function(req, res){
-    vagaController.listar(req, res);
+    vagaController.listar(req, res);      
 });
 //-----------------------------------------------
 app.listen(80, function () {

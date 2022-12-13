@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="style/nav.css">
 <nav class="navbar navbar-expand-lg navbar-light fixed">
     <div class="container">
         <a class="navbar-brand" href="#">JobSource</a>
@@ -15,7 +16,7 @@
                     </li>
                     <li class="nav-item">
                         <% if(logado.foto_perfil != null){ %>
-                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="max-width: 50px"></a>
+                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
                         <% }else{ %>    
                             <a class="nav-link" href="/usuario"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 40%;"></a>
                         <%}%>
@@ -36,7 +37,7 @@
                     </li>
                     <li class="nav-item">
                         <% if(logado.foto_perfil != null){ %>
-                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="max-width: 50px;"></a>
+                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
                         <% }else{ %>    
                             <a class="nav-link" href="/usuario"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 40%;"></a>
                         <%}%>
