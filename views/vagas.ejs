@@ -3,9 +3,12 @@
 
 <head>
     <%- include('head'); %>
-    <link rel="stylesheet" href="style/vagas.css">
+    <link rel="stylesheet" href="/style/vagas.css">
 </head>
 <body>
+    <%- include('navVagas'); %>
+
+<div class="tudo">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-2">
@@ -59,7 +62,7 @@
                         <div class="card-body justify-content-center"  id="vagas">
                             <div class="row">
                                 <div class="col">
-                                    <img src="img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
+                                    <img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
                                 </div>
                                 <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
                             </div>
@@ -68,12 +71,16 @@
                         </div>
                     </div>
                 <% }) %>
+                <div class="container" id="paginacao">
+                    <%- include('paginacao'); %>
+                </div>
             </div>
             <div class="col">
 
             </div>
         </div>
     </div>  
+</div>
 </body>
 
 </html>

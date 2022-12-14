@@ -80,6 +80,11 @@ app.get('/usuario', function(req, res){
 app.get('/vagas', function(req, res){
     vagaController.listar(req, res);      
 });
+
+app.get('/vagas/:page', function(req, res){
+    var page = parseInt(req.params.page) -1
+    vagaController.listarpage(req, res, page);      
+});
 //-----------------------------------------------
 app.listen(80, function () {
     console.log("Servidor executando na porta 80");
