@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="style/nav.css">
-<nav class="navbar navbar-expand-lg navbar-light fixed">
+<nav class="navbar navbar-expand-lg bg-dark fixed">
     <div class="container">
-        <a class="navbar-brand" href="/">JobSource</a>
+        <a class="navbar-brand" href="/">JOBSOURCE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <% if(logado && logado.tipo_usuario == "candidato"){ %>
             <div class="navbar">
                 <ul class="navbar-nav ml-auto">

@@ -20,7 +20,7 @@ const vagaController = {
     //------------------------------------------------------------------------------------------------------------------------------
 
     listar: (req, res) => {
-        var perPage = 3
+        var perPage = 5
         var page = 0
 
         contagem = "SELECT COUNT(*) as numero FROM vaga";
@@ -36,16 +36,16 @@ const vagaController = {
     },
 
     listarpage: (req, res, page) => {
-        var perPage = 3
-
-        contagem = "SELECT COUNT(*) as numero FROM vaga";
-        var sql = "SELECT * FROM vaga ORDER BY titulo ASC LIMIT ? OFFSET ?"
-        con.query(contagem, function (err, result2, fields) {
-            if (err) throw err;
-            con.query(sql, [perPage, page], function (err, result, fields) {
+            var perPage = 5
+            var pagea = page * perPage
+            contagem = "SELECT COUNT(*) as numero FROM vaga";
+            var sql = "SELECT * FROM vaga ORDER BY titulo ASC LIMIT ? OFFSET ?"
+            con.query(contagem, function (err, result2, fields) {
                 if (err) throw err;
-                pages = Math.ceil(result2[0]['numero'] / perPage)
-                res.render('vagas.ejs', { vagas: result, current: page + 1, pages: pages, })
+                con.query(sql, [perPage, pagea], function (err, result, fields) {
+                    if (err) throw err;
+                    pages = Math.ceil(result2[0]['numero'] / perPage)
+                    res.render('vagas.ejs', { vagas: result, current: page + 1, pages: pages, })
             });
         });
     }

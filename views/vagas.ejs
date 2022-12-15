@@ -4,18 +4,16 @@
 <head>
     <%- include('head'); %>
     <link rel="stylesheet" href="/style/vagas.css">
+    <script src="/script/vagas.js"></script>
 </head>
 <body>
-    <%- include('navVagas'); %>
-
-<div class="tudo">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-2">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-3">
                 <div class="filtro">
                     <form method="GET" action="/vagas" enctype="multipart/form-data">
                         <h4>Filtros</h4>
-                        <div class="form-group" met>
+                        <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="todos" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">Todos</label><br>
@@ -52,35 +50,43 @@
                                 <option value="integral">Integral</option>
                             </select>
                         </div><br>
-                        <p align="center"><button type="submit" class="btn btn-dark">⠀⠀⠀⠀Filtrar⠀⠀⠀⠀</button></p>
+                        <p align="center"><button type="submit" class="btn btn-outline-light">⠀⠀⠀⠀Filtrar⠀⠀⠀⠀</button></p>
                     </form>
                 </div>
             </div>
-            <div class="col-6">
-                <% vagas.forEach(function(vaga) { %>
-                    <div class="card mt-2" style="max-width: 30rem; min-height: 10rem;">
-                        <div class="card-body justify-content-center"  id="vagas">
-                            <div class="row">
-                                <div class="col">
-                                    <img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
+            <div class="col-4" id="vagas">
+                <div class="container">
+                    <% vagas.forEach(function(vaga) { %>
+                        <div class="card mt-2 bg-dark" style="width: 100%; height: 10rem;" id="card" onclick="selecionar()">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
+                                    </div>
+                                    <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
                                 </div>
-                                <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
+                                <h6 class="card-subtitle mb-2 text-muted">Nome anunciante / <%= vaga.localizacao %></h6>
+                                <p class="card-text"><%= vaga.descricao %></p>
                             </div>
-                            <h6 class="card-subtitle mb-2 text-muted">Nome anunciante / <%= vaga.localizacao %></h6>
-                            <p class="card-text"><%= vaga.descricao %></p>
                         </div>
-                    </div>
-                <% }) %>
+                    <% }) %>
+                </div>
                 <div class="container" id="paginacao">
                     <%- include('paginacao'); %>
                 </div>
             </div>
-            <div class="col">
-
+            <div class="col-5">
+                <div class="container">
+                    <div class="card bg-dark" id="detalhamento">
+                        <div class="card-body">
+                            <h1>oi</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>  
-</div>
+    </div> 
+    <%- include('footer'); %>
 </body>
 
 </html>
