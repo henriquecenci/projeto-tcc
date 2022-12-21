@@ -12,7 +12,7 @@ body{
 
 /*-------------------------------- */
 #vagas {
-    margin-top: 47px;
+    margin-top: 43px;
 }
 
 h3{
@@ -23,7 +23,7 @@ h3{
 .filtro{
     font-size: 22px;
     margin-top: 50px;
-    margin-left: 5%;
+    margin-left: 3%;
     height: 590px;
     width: 100%;
     padding: 8%;
@@ -38,7 +38,7 @@ h4{
 /*-------------------------------- */
 
 #detalhamento{
-    margin-left: -5%;
+    margin-left: -4%;
     border-radius: 1%;
     margin-top: 50px;
     width: 100%; 

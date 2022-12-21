@@ -37,7 +37,7 @@ html, body{
     font-size: 45px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: -9%;
+    margin-top: -10%;
 }
 
 #texto-vagas {
@@ -51,7 +51,7 @@ html, body{
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: right;
-    margin-top: 4%;
+    margin-top: 6%;;
 }
 
 #texto-sobre {
@@ -78,7 +78,7 @@ html, body{
 }
 
 button{
-    margin-top: -730px;
+    margin-top: -690px;
 }
 
 /* ----------------------------------------------------------------------- */
@@ -95,4 +95,5 @@ button{
 #texto-footer{
     color: white;
     font-weight: bold;
+    text-transform: uppercase;
 }
