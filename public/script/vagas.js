@@ -1,3 +1,3 @@
 function selecionar(){
-    document.getElementById('card').className = 'card border-info mt-2'
+    document.getElementById('card').style = 'background-color: #B0BBE1; width: 100%; height: 10rem'
 }

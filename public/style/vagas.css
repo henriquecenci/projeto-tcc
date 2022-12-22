@@ -39,10 +39,19 @@ h4{
 
 #detalhamento{
     margin-left: -4%;
-    border-radius: 1%;
     margin-top: 50px;
     width: 100%; 
     height: 57rem; 
+
+}
+
+h2{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.detalhamento-p{
+    font-size: 18px;
 }
 
 .row{

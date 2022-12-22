@@ -56,7 +56,7 @@ app.post('/anunciante', function (req, res) {
 app.get('/logout',function(req,res){
     req.session.destroy(function(err) {  
 })
-    res.redirect('/login');
+    res.redirect('/');
 });
 
 //anunciar Vaga---------------------------------
@@ -65,7 +65,7 @@ app.get('/anunciar', function (req, res) {
 });
 
 app.post('/anunciar', function(req, res){
-    vagaController.anunciar (req, res);
+    vagaController.anunciar(req, res);
 });
 
 //usuario----------------------------------------
@@ -78,12 +78,7 @@ app.get('/usuario', function(req, res){
 
 //listar----------------------------------------
 app.get('/vagas', function(req, res){
-    vagaController.listar(req, res);      
-});
-
-app.get('/vagas/:page', function(req, res){
-    var page = parseInt(req.params.page) -1
-    vagaController.listarpage(req, res, page);      
+    vagaController.listar(req, res);
 });
 //-----------------------------------------------
 app.listen(80, function () {
