@@ -19,24 +19,33 @@ const vagaController = {
 
     //------------------------------------------------------------------------------------------------------------------------------
 
-    listar: (req, res, id_vaga) => {
-        let sql = "SELECT * FROM vaga ORDER BY id_vaga DESC";
-        con.query(sql, function (err, result, fields) {
+    listar: (req, res) => {
+        var perPage = 2
+        var page = 0
+
+        contagem = "SELECT COUNT(*) as numero FROM vaga";
+        var sql = "SELECT * FROM vaga ORDER BY titulo DESC LIMIT ? OFFSET ?"
+        con.query(contagem, function (err, result2, fields) {
             if (err) throw err;
-            res.render('vagas.ejs', { vagas: result, teste: id_vaga});
+            con.query(sql, [perPage, page], function (err, result, fields) {
+                if (err) throw err;
+                pages = Math.ceil(result2[0]['numero'] / perPage)
+                res.render('vagas.ejs', { vagas: result, current: page + 1, pages: pages, })
+            });
         });
     },
 
-    //------------------------------------------------------------------------------------------------------------------------------
-    
-    detalhar: (req, res, id_vaga) => {
-        let sql = "SELECT * FROM vaga ORDER BY id_vaga DESC";
-        let detalhamento = "SELECT * FROM vaga WHERE id_vaga = ?";
-        con.query(detalhamento, id_vaga, function (err, result2, fields) {
-            if (err) throw err;
-            con.query(sql, function (err, result, fields) {
+    listarpage: (req, res, page) => {
+            var perPage = 2
+            var pagea = page * perPage
+            contagem = "SELECT COUNT(*) as numero FROM vaga";
+            var sql = "SELECT * FROM vaga ORDER BY titulo DESC LIMIT ? OFFSET ?"
+            con.query(contagem, function (err, result2, fields) {
                 if (err) throw err;
-                res.render('vagas.ejs', { vagas: result, teste: id_vaga, detalhamento: result2 });
+                con.query(sql, [perPage, pagea], function (err, result, fields) {
+                    if (err) throw err;
+                    pages = Math.ceil(result2[0]['numero'] / perPage)
+                    res.render('vagas.ejs', { vagas: result, current: page + 1, pages: pages, })
             });
         });
     }

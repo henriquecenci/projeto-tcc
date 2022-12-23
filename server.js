@@ -81,9 +81,9 @@ app.get('/vagas', function(req, res){
     vagaController.listar(req, res, 0);
 });
 
-app.get('/vagas/:id', function(req, res){
-    let id_vaga = req.params.id;
-    vagaController.detalhar(req, res, id_vaga);
+app.get('/vagas/:page', function(req, res){
+    var page = parseInt(req.params.page) -1
+    vagaController.listarpage(req, res, page);      
 });
 //-----------------------------------------------
 app.listen(80, function () {
