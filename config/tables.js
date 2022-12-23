@@ -16,7 +16,7 @@ con.connect(function (err) {
   });
 
   if (err) throw err;
-  var sql = "CREATE TABLE vaga (id_vaga INT AUTO_INCREMENT PRIMARY KEY, titulo VARCHAR(50) NOT NULL, salario INT NOT NULL, beneficios VARCHAR(50), localizacao VARCHAR(50), carga_horaria INT NOT NULL, horario_trabalho VARCHAR(30), tipo_vaga VARCHAR(30) NOT NULL, descricao VARCHAR(255) NOT NULL, requisitos VARCHAR(255) NOT NULL)";
+  var sql = "CREATE TABLE vaga (id_vaga INT AUTO_INCREMENT PRIMARY KEY, titulo VARCHAR(50) NOT NULL, salario INT NOT NULL, beneficios VARCHAR(50), localizacao VARCHAR(50), carga_horaria INT NOT NULL, horario_trabalho VARCHAR(30), tipo_vaga VARCHAR(30) NOT NULL, descricao VARCHAR(255) NOT NULL, requisitos VARCHAR(255) NOT NULL, id_usuario INT REFERENCES usuario (id_usuario))";
 
   con.query(sql, function (err, result) {
     if (err) throw err;

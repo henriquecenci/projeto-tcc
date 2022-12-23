@@ -78,7 +78,12 @@ app.get('/usuario', function(req, res){
 
 //listar----------------------------------------
 app.get('/vagas', function(req, res){
-    vagaController.listar(req, res);
+    vagaController.listar(req, res, 0);
+});
+
+app.get('/vagas/:id', function(req, res){
+    let id_vaga = req.params.id;
+    vagaController.detalhar(req, res, id_vaga);
 });
 //-----------------------------------------------
 app.listen(80, function () {

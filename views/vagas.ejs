@@ -58,7 +58,7 @@
             <div class="col-4" id="vagas">
                 <div class="container">
                     <% vagas.forEach(function(vaga) { %>
-                        <div class="card mt-2" style="width: 100%; height: 10rem;" id="card" onclick="selecionar()">
+                        <div class="card mt-2" style="width: 100%; height: 12rem;" id="card" onclick="selecionar()">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -68,6 +68,7 @@
                                 </div>
                                 <h6 class="card-subtitle mb-2 text-muted">Nome anunciante / <%= vaga.localizacao %></h6>
                                 <p class="card-text"><%= vaga.descricao %></p>
+                                <p align="right"><a href="/vagas/<%= vaga.id_vaga %>"><button type="submit" class="btn btn-primary">detalhar</button></a></p>
                             </div>
                         </div>
                     <% }) %>
@@ -77,15 +78,15 @@
                 <div class="container">
                     <div class="card" id="detalhamento">
                         <div class="card-body">
-                            <h2><p align="center">estagio em carpinteiro</p></h2><br>
+                            <% if(teste != 0){ %>
+                            <h2><p align="center"><%= detalhamento.titulo %></p></h2><br>
                             <div class="row">
                                 <div class="col">
-                                    <p class="detalhamento-p">Salario: R$ 9. 999,99</p>
-                                    <p class="detalhamento-p">carga horaria: 4 horas</p>
+                                    <p class="detalhamento-p">Salario: <%= detalhamento.salario %></p>
+                                    <p class="detalhamento-p">carga horaria: <%= detalhamento.carga_horaria %></p>
                                     <p class="detalhamento-p">horario de trabalho: Manhã</p>
                                     <p class="detalhamento-p">Localização: Porto Alegre - RS</p><br>
                                 </div>
-
                                 <div class="col">
                                     <p align="center">
                                         <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
@@ -94,13 +95,14 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLongTitle"><h2>SELFIE DO ARTHUR</h2></h5>
+                                                  <h5 class="modal-title" id="exampleModalLongTitle"><h2>TITULO VAGA</h2></h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                  <img src="/img/jeffeson.jpeg" alt="">
+                                                    <h4>envie seu curriculo</h4><br>
+                                                  <input class="form-group" type="file" name="curriculo" id="">t
                                                 </div>
                                                 <div class="modal-footer">
                                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
@@ -133,7 +135,9 @@
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi illum nemo laudantium sed, culpa eveniet asperiores. Ab
                                 excepturi aspernatur numquam maxime ut ad fugiat natus exercitationem voluptates! Alias, blanditiis dolore.
                             </p>
-
+                            <% } else {%>
+                                <h5>SELECIONE UMA VAGA</h5>
+                            <% } %>
                         </div>
                     </div>
                 </div>

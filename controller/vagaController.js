@@ -19,11 +19,25 @@ const vagaController = {
 
     //------------------------------------------------------------------------------------------------------------------------------
 
-    listar: (req, res) => {
-        var sql = "SELECT * FROM vaga";
+    listar: (req, res, id_vaga) => {
+        let sql = "SELECT * FROM vaga ORDER BY id_vaga DESC";
         con.query(sql, function (err, result, fields) {
             if (err) throw err;
-            res.render('vagas.ejs', { vagas: result });
+            res.render('vagas.ejs', { vagas: result, teste: id_vaga});
+        });
+    },
+
+    //------------------------------------------------------------------------------------------------------------------------------
+    
+    detalhar: (req, res, id_vaga) => {
+        let sql = "SELECT * FROM vaga ORDER BY id_vaga DESC";
+        let detalhamento = "SELECT * FROM vaga WHERE id_vaga = ?";
+        con.query(detalhamento, id_vaga, function (err, result2, fields) {
+            if (err) throw err;
+            con.query(sql, function (err, result, fields) {
+                if (err) throw err;
+                res.render('vagas.ejs', { vagas: result, teste: id_vaga, detalhamento: result2 });
+            });
         });
     }
 }
