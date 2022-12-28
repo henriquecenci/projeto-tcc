@@ -10,6 +10,8 @@ const app = express();
 con = require("../config/db.js").pool;
 
 const userController = {
+    
+
     login: (req, res) => {
         var form = new formidable.IncomingForm();
         form.parse(req, function (err1, fields, files) {
@@ -36,6 +38,14 @@ const userController = {
                 }
             });
         });
+    },
+    
+    //----------------------------------------------------------------------------------
+
+    logout: (req, res) => {
+        req.session.destroy(function(err) {  
+        })
+        res.redirect('/');
     },
 
     //----------------------------------------------------------------------------------

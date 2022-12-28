@@ -22,5 +22,13 @@ con.connect(function (err) {
     if (err) throw err;
     console.log("Tabela vaga criada");
   });
+
+  if (err) throw err;
+  var sql = "CREATE TABLE candidatura (id_candidatura INT AUTO_INCREMENT PRIMARY KEY, curriculo VARCHAR(255) NOT NULL, status_candidatura VARCHAR(20), id_usuario INT REFERENCES usuario (id_usuario), id_vaga INT REFERENCES vaga (id_vaga))";
+
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Tabela candidatura criada");
+  });
   con.end();
 });

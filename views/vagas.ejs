@@ -58,7 +58,7 @@
             <div class="col-4" id="vagas">
                 <div class="container">
                     <% vagas.forEach(function(vaga) { %>
-                        <div class="card mt-2 lista_vagas" style="width: 100%; height: 10rem;" id="<%= 'card_' +vaga['id_vaga'] %>" onclick="selecionar(<%=vaga['id_vaga']%>)">
+                        <div class="card mt-2 lista_vagas" style="width: 100%; height: 10rem;" id="<%= 'card_' +vaga['id_vaga'] %>" onclick="selecionar( <%= vaga['id_vaga'] %> )">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
                                 </div>
-                                <h6 class="card-subtitle mb-2 text-muted">Nome anunciante / <%= vaga.localizacao %></h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Nome anunciante/ <%= vaga.localizacao %></h6>
                                 <p class="card-text"><%= vaga.descricao %></p>
                             </div>
                         </div>
@@ -94,28 +94,27 @@
                                         <div class="col">
                                             <p align="center">
                                                 <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
-        
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                       <div class="modal-content">
                                                         <div class="modal-header">
-                                                          <h4 class="modal-title" id="exampleModalLongTitle">candidatar-se a <%= vagas[i]['titulo'] %></h4>
+                                                          <h5 class="modal-title" id="exampleModalLongTitle">candidatar-se a <%= vagas[i]['titulo'] %></h5>
                                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                           </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                          
+                                                            <label for="currcicuo">Envie seu curriculo</label>
+                                                            <input type="file" class="form-group" name="curriculo" id="curriculo">
                                                         </div>
                                                         <div class="modal-footer">
-                                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
-                                                          <button type="button" class="btn btn-success">Enviar candidatura</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>    
+                                                            <button type="submit" class="btn btn-success">Enviar candidatura</button>
                                                         </div>
                                                       </div>
                                                     </div>
                                                   </div>
                                             </p>
-                                            
                                             <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
                                         </div>
                                     </div>

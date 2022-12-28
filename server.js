@@ -14,20 +14,20 @@ app.use(session({
 
 const userController = require("./controller/userController");
 const vagaController = require("./controller/vagaController");
+const candidaturaController = require("./controller/candidaturaController");
+const userRoutes = require("./rotas/userRoutes.js");
+const vagaRoutes = require("./rotas/vagaRoutes.js");
 
 con = require("./config/db.js").pool;
 
 //index-----------------------------------------
 app.get('/', function (req, res) {
-	if(req.session.loggedin)	
-        res.render('index.ejs', {logado: req.session.userdata});
-	else 
-        res.render('index.ejs', {logado: null});
+    userRoutes.index(req, res);
 });
 
 //login-----------------------------------------
 app.get('/login', function (req, res) {
-    res.render('login.ejs', {mensagem: null});
+    userRoutes.logar(req, res);
 });
 
 app.post('/login', function (req, res) {
@@ -36,7 +36,7 @@ app.post('/login', function (req, res) {
 
 //cadastro candidato----------------------------
 app.get('/candidato', function (req, res) {
-    res.render('cadastraCandidato.ejs');
+    userRoutes.candidato(req, res);
 });
 
 app.post('/candidato', function (req, res) {
@@ -45,7 +45,7 @@ app.post('/candidato', function (req, res) {
 
 //cadastro anunciante----------------------------
 app.get('/anunciante', function (req, res) {
-    res.render('cadastraAnunciante.ejs');
+    userRoutes.anunciante(req, res);
 });
 
 app.post('/anunciante', function (req, res) {
@@ -54,26 +54,22 @@ app.post('/anunciante', function (req, res) {
 
 //logout----------------------------------------
 app.get('/logout',function(req,res){
-    req.session.destroy(function(err) {  
-})
-    res.redirect('/');
+    userController.logout(req, res);
 });
 
 //anunciar Vaga---------------------------------
 app.get('/anunciar', function (req, res) {
-    res.render('anunciarVaga.ejs');
+    vagaRoutes.anunciarVaga(req, res);
 });
 
-app.post('/anunciar', function(req, res){
-    vagaController.anunciar(req, res);
+app.post('/anunciar/:id', function(req, res){
+    var id_usuario = req.params.id;
+    vagaController.anunciar(req, res, id_usuario);
 });
 
 //usuario----------------------------------------
 app.get('/usuario', function(req, res){
-    if(req.session.loggedin)	
-        res.render('usuario.ejs', {logado: req.session.userdata});
-	else 
-        res.render('usuario.ejs', {logado: null});
+    userRoutes.perfil(req, res);
 });
 
 //listar----------------------------------------
@@ -83,7 +79,21 @@ app.get('/vagas', function(req, res){
 
 app.get('/vagas/:page', function(req, res){
     var page = parseInt(req.params.page) -1
-    vagaController.listarpage(req, res, page);      
+    vagaController.listarpage(req, res, page); 
+});
+
+app.get('/vagas/:', function(req, res){
+    var pesquisa = req.params;
+    vagaController.pesquisa(req, res, pesquisa); 
+});
+
+//candidatura ---------------------------------
+app.get('/candidatura', function (req, res) {
+    res.render('candidatura.ejs');
+});
+
+app.post('/candidatura', function(req, res){
+    candidaturaController.candidatura(req, res);
 });
 //-----------------------------------------------
 app.listen(80, function () {

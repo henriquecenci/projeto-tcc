@@ -5,7 +5,9 @@
         <a class="navbar-brand" href="/">JOBSOURCE</a>
         <ul class="nav">
             <li class="nav-item mr-5">
-                <input type="text" class="form-control" placeholder="Pesquisar vagas..." style="margin-top: 5px; background-color: #E4E4E4; width: 500px; height: 40px;">
+                <form action="/vagas/:pesquisa" method="GET">
+                    <input type="text" class="form-control" placeholder="Pesquisar vagas..." style="margin-top: 5px; background-color: #E4E4E4; width: 500px; height: 40px;">       
+                </form>
             </li>
           </ul>
     </nav>
