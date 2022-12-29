@@ -8,6 +8,7 @@ const saltRounds = 10;
 const app = express();
 
 con = require("../config/db.js").pool;
+const userModel = require("../model/userModel.js");
 
 const userController = {
     
@@ -16,7 +17,9 @@ const userController = {
         var form = new formidable.IncomingForm();
         form.parse(req, function (err1, fields, files) {
             var senha = fields.senha;
-            var sql ="SELECT * FROM usuario where email = '" + fields.email +"'";
+            var email = fields.email;
+            
+            var sql ="SELECT * FROM usuario where email = '" + email +"'";
             con.query(sql, function (err, result) {
                 if (err) throw err;
                 if(result.length){
@@ -36,7 +39,7 @@ const userController = {
                     res.render('login.ejs', {mensagem: "email esta incorreto",});
                     res.end();
                 }
-            });
+            }); 
         });
     },
     
@@ -54,7 +57,7 @@ const userController = {
         var form = new formidable.IncomingForm();
         form.parse(req, (err, fields, files) => {
             let img = null;
-
+            
             if(files.imagem.size > 0){
                 var oldpath = files.imagem.filepath;
                 var hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
@@ -67,18 +70,17 @@ const userController = {
             }
 
             bcrypt.hash(fields['senha'], saltRounds, function (err, hash) {
-                var sql = "INSERT INTO usuario (nome, email, senha, foto_perfil, tipo_usuario) VALUES ?";
-                var values = [
-                    [fields['nome'], fields['email'], hash, img, tipo_usuario]
-                ];
-                con.query(sql, [values], function (err, result) {
-                    if (err) throw err;
-                    console.log("Numero de registros inseridos: " + result.affectedRows);
-                });
+                userModel.cadastro(fields['nome'], fields['email'], hash, img, tipo_usuario);
             });
         });
         res.redirect('/login');
-    }
+    },
+
+     //----------------------------------------------------------------------------------
+
+     perfil: (req, res, id) => {
+        
+     }
 }
 
 

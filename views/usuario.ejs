@@ -13,14 +13,32 @@
         <div class="infos">
             <% if(logado.foto_perfil != null){ %>
                 <p align="center"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
-            <% }else{ %>    
+            <% }else if(logado.tipo_usuario == "anunciante"){ %>    
+                <p align="center"><img src="img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
+            <%}else if(logado.tipo_usuario == "candidato"){%>
                 <p align="center"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
             <%}%>
            
             <h3><p align="center">Seja bem vindo, <%= logado.nome %>!</p></h3>
         </div>
     </div>
+    <div class="container">
+        <% if(logado.tipo_usuario == "anunciante"){ %>
+            <div class="card" style="width: 20rem; height: 13rem;">
+                <div class="card-body">
+                    <h2 class="card-title"><p align="center">Titulo da vaga</p></h2>
 
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-success">Aprovado</a><br>
+                        <a href="#" class="btn btn-danger">Anular Candidatura</a>
+                    </div>
+                </div>
+            </div>
+        <% } else if(logado.tipo_usuario == "candidato"){ %>
+            
+        <% } %>
+
+    </div>
     <%- include('footer'); %>
 </body>
 </html>

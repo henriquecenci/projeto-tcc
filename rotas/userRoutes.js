@@ -1,5 +1,5 @@
 con = require("../config/db.js").pool;
-
+const userController = require("../controller/userController.js")
     const userRoutes = {
         index: (req, res) => {
             if(req.session.loggedin)	
