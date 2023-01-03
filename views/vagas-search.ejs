@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('head'); %>
+    <link rel="stylesheet" href="/style/vagas.css">
+    <script src="/script/vagas.js"></script>
+</head>
+<body>
+    <%- include('navvagas'); %>
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-3">
+                <div class="filtro">
+                    <form method="GET" action="/vagas" enctype="multipart/form-data">
+                        <h4>Filtros</h4>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="todos" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">Todos</label><br>
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="jovem_aprendiz">
+                                <label class="form-check-label" for="flexRadioDefault2">Jovem aprendíz</label><br>
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault3" value="estagio">
+                                <label class="form-check-label" for="flexRadioDefault3">Estágio</label><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Localização:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="cidade">
+                                <option value="todas" selected>Todas</option>
+                                <option value="GR">Gravataí - RS</option>
+                                <option value="POA">Porto Alegre - RS</option>
+                                <option value="CX">Cachoeirinha - RS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Salário:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="salario">
+                                <option value="todos" selected>Todos</option>
+                                <option value=">1000">até R$ 1.000</option>
+                                <option value=">2000">até R$ 2.000</option>
+                                <option value=">3000">até R$ 1.000.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="localizacao">Turno:</label><br>
+                            <select select class="form-control" id="exampleFormControlSelect1" name="turno">
+                                <option value="todos" selected>Todos</option>
+                                <option value="manha">Manhã</option>
+                                <option value="tarde">Tarde</option>
+                                <option value="integral">Integral</option>
+                            </select>
+                        </div><br>
+                        <p align="center"><button type="submit" class="btn-lg btn-outline-dark">⠀⠀⠀⠀Filtrar⠀⠀⠀⠀</button></p>
+                    </form>
+                </div>
+            </div>
+            <div class="col-4" id="vagas">
+                <div class="container">
+                    <% vagas.forEach(function(vaga) { %>
+                        <div class="card mt-2 lista_vagas" style="width: 100%; height: 10rem;" id="<%= 'card_' +vaga['id_vaga'] %>" onclick="selecionar( <%= vaga['id_vaga'] %> )">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
+                                    </div>
+                                    <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
+                                </div>
+                                <h6 class="card-subtitle mb-2 text-muted">Nome anunciante/ <%= vaga.localizacao %></h6>
+                                <p class="card-text"><%= vaga.descricao %></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="container" id="paginacao">
+                    <%- include('paginacao'); %>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="container">
+                    <div class="card" id="detalhamento">
+                        <% for (var i = 0; i < vagas.length; i++) { %>
+                            <% if (i==0) { %>
+                                <div class="card-body selecionada" id="<%= 'seleciona_' + vagas[i]['id_vaga'] %>" style = "display: block;">
+                                    <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="detalhamento-p">Salario: R$ <%= vagas[i]['salario'] %> </p>
+                                            <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
+                                            <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
+                                            <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
+                                        </div>
+        
+                                        <div class="col">
+                                            <p align="center">
+                                                <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="exampleModalLongTitle">candidatar-se a <%= vagas[i]['titulo'] %></h5>
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label for="currcicuo">Envie seu curriculo</label>
+                                                            <input type="file" class="form-group" name="curriculo" id="curriculo">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>    
+                                                            <button type="submit" class="btn btn-success">Enviar candidatura</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                            </p>
+                                            <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
+                                        </div>
+                                    </div>
+        
+                                    <h4>Requisitos e qualificações</h4>
+                                    <ul>
+                                        <li>
+                                            <%= vagas[i]['requisitos'] %>
+                                        </li>
+                                      
+                                    </ul><br>
+        
+                                    <h4>Descricação da vaga:</h4>
+                                    <p class="detalhamento-p">
+                                        <%= vagas[i]['descricao'] %>
+                                    </p>
+        
+                                </div>
+                                <% } else { %>
+                                    <div class="card-body selecionada" id="<%= 'seleciona_' + vagas[i]['id_vaga'] %>" style = "display: none;">
+                                        <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="detalhamento-p">Salario: R$ <%= vagas[i]['salario'] %> </p>
+                                                <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
+                                                <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
+                                                <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
+                                            </div>
+            
+                                            <div class="col">
+                                                <p align="center">
+                                                    <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
+            
+                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="exampleModalLongTitle"><h2>SELFIE DO ARTHUR</h2></h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              <img src="/img/jeffeson.jpeg" alt="">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+                                                              <button type="button" class="btn btn-success">Enviar candidatura</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </p>
+                                                
+                                                <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
+                                            </div>
+                                        </div>
+            
+                                        <h4>Requisitos e qualificações</h4>
+                                        <ul>
+                                            <li>
+                                                <%= vagas[i]['requisitos'] %>
+                                            </li>
+                                          
+                                        </ul><br>
+            
+                                        <h4>Descricação da vaga:</h4>
+                                        <p class="detalhamento-p">
+                                            <%= vagas[i]['descricao'] %>
+                                        </p>
+            
+                                    </div>
+                                
+                                <% } %>
+                        <% } %>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <%- include('footer'); %>
+</body>
+
+</html>

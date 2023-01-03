@@ -54,8 +54,20 @@ const vagaController = {
     //------------------------------------------------------------------------------------------------------------------------------
 
     pesquisa: (req, res, pesquisa) => {
-  
-    },
+        var perPage = 5
+        var page = 0
+
+        contagem = "SELECT COUNT(*) as numero FROM vaga";
+        var sql = "SELECT * FROM vaga WHERE titulo LIKE '%"+pesquisa+"%' ORDER BY id_vaga DESC LIMIT ? OFFSET ?"
+        con.query(contagem, function (err, result2, fields) {
+            if (err) throw err;
+            con.query(sql, [perPage, page], function (err, result, fields) {
+                if (err) throw err;
+                pages = Math.ceil(result2[0]['numero'] / perPage)
+                res.render('vagas-search.ejs', { vagas: result, current: page + 1, pages: pages})
+            });
+        });
+    }
 
     //------------------------------------------------------------------------------------------------------------------------------
 

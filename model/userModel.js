@@ -16,7 +16,10 @@ module.exports = {
     },
 
     login: function(senha, email){
+   
+    },
 
-             
+    perfil: function(res, id_usuario){
+
     }
 }

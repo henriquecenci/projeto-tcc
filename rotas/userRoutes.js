@@ -26,6 +26,10 @@ const userController = require("../controller/userController.js")
             else 
                 res.redirect('/');
         },
+
+        cadastro: (req, res) => {
+            
+        }
         
     }
 

@@ -74,17 +74,15 @@ app.get('/usuario', function(req, res){
 
 //listar----------------------------------------
 app.get('/vagas', function(req, res){
-    vagaController.listar(req, res, 0);
+    vagaRoutes.vagas(req, res);
 });
 
 app.get('/vagas/:page', function(req, res){
-    var page = parseInt(req.params.page) -1
-    vagaController.listarpage(req, res, page); 
+    vagaRoutes.vagaPage(req, res);
 });
 
-app.get('/vagas/:', function(req, res){
-    var pesquisa = req.params;
-    vagaController.pesquisa(req, res, pesquisa); 
+app.get('/vagas-search', function(req, res){
+    vagaRoutes.pesquisa(req, res);
 });
 
 //candidatura ---------------------------------
