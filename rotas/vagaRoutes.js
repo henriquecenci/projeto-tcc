@@ -20,9 +20,7 @@ var vagaController = require('../controller/vagaController.js')
         pesquisa: (req, res) => {
             let pesquisa = req.query.pesquisa;
             vagaController.pesquisa(req, res, pesquisa);
-        }
-
-
+        },
     }
 
 module.exports = vagaRoutes;

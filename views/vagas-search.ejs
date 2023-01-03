@@ -93,27 +93,7 @@
         
                                         <div class="col">
                                             <p align="center">
-                                                <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="exampleModalLongTitle">candidatar-se a <%= vagas[i]['titulo'] %></h5>
-                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                          </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <label for="currcicuo">Envie seu curriculo</label>
-                                                            <input type="file" class="form-group" name="curriculo" id="curriculo">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>    
-                                                            <button type="submit" class="btn btn-success">Enviar candidatura</button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
+                                                <a href="/candidatura/<%= vagas[i]['id_vaga']%>"></a><button type="button" class="btn btn-info">Candidatar-se</button>
                                             </p>
                                             <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
                                         </div>
@@ -146,29 +126,8 @@
             
                                             <div class="col">
                                                 <p align="center">
-                                                    <buttonbutton type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModalCenter">Candidatar-se</button>
-            
-                                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                          <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <h5 class="modal-title" id="exampleModalLongTitle"><h2>SELFIE DO ARTHUR</h2></h5>
-                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                              </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                              <img src="/img/jeffeson.jpeg" alt="">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
-                                                              <button type="button" class="btn btn-success">Enviar candidatura</button>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
+                                                    <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
                                                 </p>
-                                                
                                                 <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
                                             </div>
                                         </div>

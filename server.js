@@ -6,17 +6,14 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use( express.static("public") );
 
-app.use(session({
-    secret: '2C44-4D44-WppQ38S',
-    resave: false,
-    saveUninitialized: true
-}));
+app.use(session({ secret: '2C44-4D44-WppQ38S', resave: false, saveUninitialized: true }));
 
 const userController = require("./controller/userController");
 const vagaController = require("./controller/vagaController");
 const candidaturaController = require("./controller/candidaturaController");
 const userRoutes = require("./rotas/userRoutes.js");
 const vagaRoutes = require("./rotas/vagaRoutes.js");
+const candidaturaRoutes = require('./rotas/candidaturaRoutes');
 
 con = require("./config/db.js").pool;
 
@@ -86,12 +83,12 @@ app.get('/vagas-search', function(req, res){
 });
 
 //candidatura ---------------------------------
-app.get('/candidatura', function (req, res) {
-    res.render('candidatura.ejs');
+app.get('/candidatura/:id', function (req, res) {
+    candidaturaRoutes.candidatura(req, res)
 });
 
-app.post('/candidatura', function(req, res){
-    candidaturaController.candidatura(req, res);
+app.post('/candidatura/:idvaga/:idusuario', function(req, res){
+    candidaturaRoutes.confirmarCandidatura(req, res)
 });
 //-----------------------------------------------
 app.listen(80, function () {
