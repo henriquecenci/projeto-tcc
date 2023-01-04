@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/style/nav.css">
 <nav class="navbar navbar-expand-lg bg-light fixed">
     <div class="container">
-        <a class="logo" href="/">JOBSOURCE</a>
+        <a class="navbar-brand" href="/">JOBSOURCE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,9 +40,9 @@
                     </li>
                     <li class="nav-item">
                         <% if(logado.foto_perfil != null){ %>
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario%>"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
+                            <a class="nav-link" href="/usuario"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
                         <% }else{ %>    
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario%>"><img src="img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
+                            <a class="nav-link" href="/usuario"><img src="img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
                         <%}%>
                     </li>
                 </ul>

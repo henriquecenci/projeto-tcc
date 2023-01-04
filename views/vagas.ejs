@@ -13,7 +13,7 @@
             <div class="col-3">
                 <div class="filtro">
                     <form method="GET" action="/vagas" enctype="multipart/form-data">
-                        <h4>Filtros</h4>
+                        <P class="text-center" id="filtros">FILTROS</P>
                         <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="todos" checked>
@@ -67,7 +67,7 @@
                                     <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
                                 </div>
                                 <h6 class="card-subtitle mb-2 text-muted">Nome anunciante/ <%= vaga.localizacao %></h6>
-                                <p class="card-text"><%= vaga.descricao %></p>
+                                <p class="card-text text-truncate"><%= vaga.descricao %></p>
                             </div>
                         </div>
                     <% }) %>
@@ -85,17 +85,20 @@
                                     <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="detalhamento-p">Salario: R$ <%= vagas[i]['salario'] %> </p>
+                                            <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
                                             <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
                                             <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
                                             <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
                                         </div>
         
                                         <div class="col">
-                                            <p align="center">
-                                                <a href="/candidatura/<%= vagas[i]['id_vaga']%>"></a><button type="button" class="btn btn-info">Candidatar-se</button>
-                                            </p>
-                                            <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
+                                            <% if(logado != null) {%>
+                                                <p align="center">
+                                                    <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
+                                                </p>
+                                            <%} else {%>
+                                                <a href="/login" ><p class="text-right" style="margin-right: 25%; font-size: 20px;"><span class="badge badge-warning">Faça o login para<br> se candidatar</span></p></a>
+                                            <% } %>
                                         </div>
                                     </div>
         
@@ -118,17 +121,20 @@
                                         <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="detalhamento-p">Salario: R$ <%= vagas[i]['salario'] %> </p>
+                                                <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
                                                 <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
                                                 <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
                                                 <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
                                             </div>
             
                                             <div class="col">
-                                                <p align="center">
-                                                    <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
-                                                </p>
-                                                <h6 class="card-subtitle mb-2 text-muted"><p align="center">Candidaturas - 29</p></h6>
+                                                <% if(logado != null) {%>
+                                                    <p align="center">
+                                                        <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
+                                                    </p>
+                                                <%} else {%>
+                                                    <a href="/login" ><p class="text-right" style="margin-right: 25%; font-size: 20px;"><span class="badge badge-warning">Faça o login para<br> se candidatar</span></p></a>
+                                                <% } %>
                                             </div>
                                         </div>
             

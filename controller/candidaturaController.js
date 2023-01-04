@@ -11,7 +11,7 @@ const candidaturaController = {
                     res.render('candidatura.ejs', {logado: req.session.userdata, vagas: result});
                 });
             }else{
-                res.redirect('/')
+                res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
             }    
         },
 
@@ -24,7 +24,7 @@ const candidaturaController = {
                     res.redirect('/vagas')
                 });
             }else{
-                res.redirect('/')
+                res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
             }    
         }
 }

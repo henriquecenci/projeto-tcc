@@ -1,11 +1,13 @@
+
 con = require("../config/db.js").pool;
+
 var vagaController = require('../controller/vagaController.js')
     const vagaRoutes = {
         anunciarVaga: (req, res) => {
             if(req.session.loggedin)
                 res.render('anunciarVaga.ejs', {logado: req.session.userdata});
             else
-                res.redirect('/login');
+                res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
         },
 
         vagas: (req, res) => {

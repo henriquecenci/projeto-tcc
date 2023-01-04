@@ -24,11 +24,15 @@ const userController = require("../controller/userController.js")
             if(req.session.loggedin)	
                 res.render('usuario.ejs', {logado: req.session.userdata});
             else 
-                res.redirect('/');
+                res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
         },
 
         cadastro: (req, res) => {
             
+        },
+
+        error: (req, res) => {
+            res.render('error.ejs', {mensagem: "404 error"})
         }
         
     }
