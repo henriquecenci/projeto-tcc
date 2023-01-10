@@ -16,7 +16,8 @@ module.exports = {
     },
 
     login: function(senha, email){
-   
+        const bcrypt = require('bcrypt');
+ 
     },
 
     perfil: function(res, id_usuario){

@@ -20,9 +20,9 @@ const candidaturaController = {
                 var sql = "INSERT INTO candidatura (id_vaga, id_usuario, status_candidatura) VALUES ("+id_vaga+","+id_candidato+", '"+status_candidatura+"')";
                 con.query(sql, function (err, result) {
                     if (err) throw err;
-                    console.log("Numero de registros inseridos: " + result.affectedRows);
-                    res.redirect('/vagas')
-                });
+                        console.log("Numero de registros inseridos: " + result.affectedRows);
+                        res.redirect('/vagas')
+                    });
             }else{
                 res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
             }    

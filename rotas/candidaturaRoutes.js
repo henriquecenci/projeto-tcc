@@ -1,5 +1,7 @@
+
 con = require("../config/db.js").pool;
-const candidaturaController = require("../controller/candidaturaController.js")
+const candidaturaController = require("../controller/candidaturaController.js");
+
     const candidaturaRoutes = {
         candidatura: (req, res) => {
             var id_vaga = req.params.id;

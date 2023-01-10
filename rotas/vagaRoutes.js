@@ -16,13 +16,22 @@ var vagaController = require('../controller/vagaController.js')
 
         vagaPage: (req, res) => {
             var page = parseInt(req.params.page) -1
-            vagaController.listarpage(req, res, page); 
+            vagaController.listarpage(req, res, page);   
         },
 
         pesquisa: (req, res) => {
             let pesquisa = req.query.pesquisa;
             vagaController.pesquisa(req, res, pesquisa);
         },
+
+        filtro: (req, res) => {
+            let salario = req.query.salario;
+            let cidade = req.query.cidade;
+            let tipo = req.query.tipo;
+            let turno = req.query.turno;
+
+            vagaController.filtrar(req, res, salario, cidade, tipo, turno);
+        }
     }
 
 module.exports = vagaRoutes;

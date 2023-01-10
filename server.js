@@ -82,6 +82,9 @@ app.get('/vagas-search', function(req, res){
     vagaRoutes.pesquisa(req, res);
 });
 
+app.get('/vagas-filter', function(req, res){
+    vagaRoutes.filtro(req, res);
+});
 //candidatura ---------------------------------
 app.get('/candidatura/:id', function (req, res) {
     candidaturaRoutes.candidatura(req, res)

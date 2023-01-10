@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="filtro">
-                    <form method="GET" action="/vagas" enctype="multipart/form-data">
+                    <form method="GET" action="/vagas-filter" enctype="multipart/form-data">
                         <P class="text-center" id="filtros">FILTROS</P>
                         <div class="form-group">
                             <div class="form-check">
@@ -37,9 +37,9 @@
                             <label for="localizacao">Salário:</label><br>
                             <select select class="form-control" id="exampleFormControlSelect1" name="salario">
                                 <option value="todos" selected>Todos</option>
-                                <option value=">1000">até R$ 1.000</option>
-                                <option value=">2000">até R$ 2.000</option>
-                                <option value=">3000">até R$ 1.000.000</option>
+                                <option value="1000">até R$ 1.000</option>
+                                <option value="2000">até R$ 2.000</option>
+                                <option value="1000000">até R$ 1.000.000</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -82,9 +82,10 @@
                         <% for (var i = 0; i < vagas.length; i++) { %>
                             <% if (i==0) { %>
                                 <div class="card-body selecionada" id="<%= 'seleciona_' + vagas[i]['id_vaga'] %>" style = "display: block;">
-                                    <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
+                                    <h2><p align="center"><%= vagas[i]['titulo'] %> / <%= vagas[i]['tipo_vaga'] %> </p></h2><br>
                                     <div class="row">
                                         <div class="col">
+                                            <p class="detalhamento-p">Cargo: <%= vagas[i]['tipo_vaga'] %> </p>
                                             <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
                                             <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
                                             <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
@@ -121,6 +122,7 @@
                                         <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
                                         <div class="row">
                                             <div class="col">
+                                                <p class="detalhamento-p">Cargo: <%= vagas[i]['tipo_vaga'] %> </p>
                                                 <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
                                                 <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
                                                 <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
