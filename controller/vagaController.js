@@ -97,17 +97,17 @@ const vagaController = {
             if(tipo != "todos" && salario != "todos" && turno != "todos"){
                 sql += " AND salario <= "+salario+" AND horario_trabalho = '"+turno+"'"
             } 
-        }else if(cidade != "todos"){
+        }else if(cidade != "todas"){
             sql += " WHERE localizacao = '"+cidade+"'"
 
-            if(cidade != "todos" && turno != "todos"){
+            if(cidade != "todas" && turno != "todos"){
                 sql += " AND horario_trabalho = '"+turno+"'"
             }
-            if(cidade != "todos" && salario != "todos"){
+            if(cidade != "todas" && salario != "todos"){
                 sql += " AND salario <= "+salario+""
             }
 
-            if(cidade != "todos" && salario != "todos" && turno != "todos"){
+            if(cidade != "todas" && salario != "todos" && turno != "todos"){
                 sql += " AND salario <= "+salario+" AND horario_trabalho = '"+turno+"'"
             } 
         }else if(salario != "todos"){
