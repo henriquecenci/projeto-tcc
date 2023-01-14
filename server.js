@@ -65,7 +65,7 @@ app.post('/anunciar/:id', function(req, res){
 });
 
 //usuario----------------------------------------
-app.get('/usuario', function(req, res){
+app.get('/usuario/:id', function(req, res){
     userRoutes.perfil(req, res);
 });
 

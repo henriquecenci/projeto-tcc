@@ -1,7 +1,7 @@
 
 con = require("../config/db.js").pool;
 
-// anunciante = "SELECT usuario.nome FROM usuario JOIN vaga ON vaga.id_usuario = usuario.id_usuario WHERE vaga.id_usuario = usuario.id_usuario;";
+// SELECT vaga.*, usuario.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = vaga.id_usuario;
 
 module.exports = {
     cadastro: function (nome, email, hash, img, tipo_usuario) {

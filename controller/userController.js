@@ -12,7 +12,6 @@ const userModel = require("../model/userModel.js");
 
 const userController = {
     
-
     login: (req, res) => {
         var form = new formidable.IncomingForm();
         form.parse(req, function (err1, fields, files) {
@@ -77,6 +76,22 @@ const userController = {
     },
 
      //----------------------------------------------------------------------------------
+
+     perfil: (req, res, id_anunciante) => {
+        var usuario = "SELECT * FROM usuario WHERE id_usuario = "+id_anunciante+""
+        var sql = "SELECT vaga.*, usuario.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = "+id_anunciante+" AND vaga.id_usuario = "+id_anunciante+"";
+        
+        con.query(usuario, function (err, result2, fields) {
+            if (err) throw err;
+            con.query(sql, function (err, result, fields) {
+                if (err) throw err;
+                    if(req.session.loggedin)
+                        res.render('usuario.ejs', { vaga: result, logado: req.session.userdata, user: result2})
+                    else
+                    res.render('error.ejs', { mensagem: "Ops! Você precisa estar logado para fazer isso!"})
+            });
+        });
+    }
 }
 
 

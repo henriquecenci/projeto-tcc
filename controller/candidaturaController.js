@@ -17,12 +17,17 @@ const candidaturaController = {
 
         confirmaCandidatura: function (req, res, id_vaga, id_candidato, status_candidatura) {
             if(req.session.loggedin){
+                var sql2 = "SELECT * FROM vaga WHERE id_vaga = "+id_vaga+""
                 var sql = "INSERT INTO candidatura (id_vaga, id_usuario, status_candidatura) VALUES ("+id_vaga+","+id_candidato+", '"+status_candidatura+"')";
-                con.query(sql, function (err, result) {
+                
+                con.query(sql2, function (err, result2) {
                     if (err) throw err;
-                        console.log("Numero de registros inseridos: " + result.affectedRows);
-                        res.redirect('/vagas')
+                    con.query(sql, function (err, result) {
+                        if (err) throw err;
+                            console.log("Numero de registros inseridos: " + result.affectedRows);
+                            res.render('confirmaCandidatura.ejs', {vaga: result2})
                     });
+                });
             }else{
                 res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
             }    

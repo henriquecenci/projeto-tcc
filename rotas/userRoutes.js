@@ -21,10 +21,8 @@ const userController = require("../controller/userController.js")
         },
 
         perfil: (req, res) => {
-            if(req.session.loggedin)	
-                res.render('usuario.ejs', {logado: req.session.userdata});
-            else 
-                res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
+            var id_anunciante = req.params.id;
+            userController.perfil(req, res, id_anunciante)
         },
 
         cadastro: (req, res) => {
