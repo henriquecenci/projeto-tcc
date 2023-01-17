@@ -11,16 +11,15 @@ module.exports = {
         ];
         con.query(sql, [values], function (err, result) {
             if (err) throw err;
-            console.log("Numero de registros inseridos: " + result.affectedRows);
+            console.log("Numero de registros inseridos: " + result.affectedRows + " " + nome + ":" + email);
         });
     },
 
     login: function(senha, email){
-        const bcrypt = require('bcrypt');
  
     },
 
     perfil: function(res, id_usuario){
-
+            
     }
 }

@@ -95,9 +95,11 @@ app.post('/candidatura/:idvaga/:idusuario', function(req, res){
 });
 
 //error --------------------------------------
+
 app.get('/error', function(req, res){
     userRoutes.error(req, res);
 });
+
 //-----------------------------------------------
 app.listen(80, function () {
     console.log("Servidor executando na porta 80");

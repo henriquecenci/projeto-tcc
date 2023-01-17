@@ -13,16 +13,22 @@ const userController = require("../controller/userController.js")
         },
 
         candidato: (req, res) =>{
-            res.render('cadastraCandidato.ejs');
-        },
+            if(typeof req.session.mensagem != 'undefined')
+                res.render('cadastraCandidato.ejs', { mensagem: req.session.mensagem });
+            else
+                res.render('cadastraCandidato.ejs', { mensagem: null});
+        },  
 
         anunciante: (req, res) =>{
-            res.render('cadastraAnunciante.ejs');
+            if(typeof req.session.mensagem != 'undefined')
+                res.render('cadastraAnunciante.ejs', { mensagem: req.session.mensagem });
+            else
+                res.render('cadastraAnunciante.ejs', { mensagem: null });
         },
 
         perfil: (req, res) => {
-            var id_anunciante = req.params.id;
-            userController.perfil(req, res, id_anunciante)
+            var id_usuario = req.params.id;
+            userController.perfil(req, res, id_usuario)
         },
 
         cadastro: (req, res) => {

@@ -17,12 +17,13 @@
 
         <% for (var i = 0; i < vagas.length; i++) { %>
 
-            <form action="/candidatura/<%= vagas[i]['id_vaga']%>/<%= logado.id_usuario %>" method="post">
+            <form action="/candidatura/<%= vagas[i]['id_vaga']%>/<%= logado.id_usuario %>" method="POST" enctype="multipart/form-data">
                 <div class="card text-center" style="width: 700px; height: 520px; margin-left: 200px;">
                     <div class="card-header">
                         <h3>Candidatar-se a vaga: <span class="badge badge-primary" style="text-transform: uppercase;"><%= vagas[i]['titulo'] %></span></h3>
                     </div>
                     <div class="card-body">
+                        <h5><p class="text-center" style="color: brown;"><%= mensagem %></p></h5>
                         <p class="text-justify" style="padding: 10px; font-size: 19px;">Olá, <%= logado.nome%>. Para se candidatar a vaga <span class="badge badge-success"><%= vagas[i]['titulo'] %></span>, basta enviar o seu curriculo <span class="badge badge-info">mais atualizado</span> em <span class="badge badge-info">formato .PDF</span>!</p>
                         <p align="center"><img src="/img/upload.png" alt="upload" style="width: 120px; height: 110px; margin-top: 4%;"></p>
                         <input type="file" class="form-group" name="curriculo" required><br><br><br>

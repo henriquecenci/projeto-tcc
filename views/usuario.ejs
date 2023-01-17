@@ -6,41 +6,43 @@
 <link rel="stylesheet" href="/style/usuario.css">
 </head>
 <div class="bloco">
-    <%- include('nav'); %>
+    <%- include('nav-usuario'); %>
 </div>
 <body>
     <div class="container-lg">
         <div class="infos">
             <% if(logado.foto_perfil != null){ %>
-                <p align="center"><img src="/imagens/<%= user.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
+                <p align="center"><img src="/imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
             <% }else if(logado.tipo_usuario == "anunciante"){ %>    
-                <p align="center"><img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
+                <p align="center"><img src="/img/anunciante.png" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
             <%}else if(logado.tipo_usuario == "candidato"){%>
                 <p align="center"><img src="/img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
             <%}%>
            
-            <h3><p align="center">Seja bem vindo, <%= user.nome %>!</p></h3>
+            <h3><p align="center">Seja bem vindo, <%= logado.nome %>!</p></h3>
         </div>
     </div>
     <div class="container mt-5">
-        <% for (var i = 0; i < vaga.length; i++) { %>
 
-            <% if(user.tipo_usuario == "anunciante"){ %>
-                <h1>anunciante</h1>
-                <div class="card" style="width: 20rem; height: 13rem;">
-                    <div class="card-body">
-                        <h2 class="card-title"><p align="center"><%= vaga[i]["titulo"] %></p></h2>
 
-                        <div class="d-grid">
-                            <a href="/editarVaga/<%= vaga[i]["id_vaga"] %>" class="btn btn-success">Editar vaga</a><br>
-                            <a href="/excluirVaga/<%= vaga[i]["id_vaga"] %></a>" class="btn btn-danger">Excluir vaga</a>
+            <% if(logado.tipo_usuario == "anunciante"){ %>
+                <h1>anunciante</h1>        
+                <% for (var i = 0; i < vaga.length; i++) { %>
+                    <div class="card" style="width: 20rem; height: 13rem;">
+                        <div class="card-body">
+                            <h2 class="card-title"><p align="center"><%= vaga[i]["titulo"] %></p></h2>
+
+                            <div class="d-grid">
+                                <a href="/editarVaga/<%= vaga[i]["id_vaga"] %>" class="btn btn-success">Editar vaga</a><br>
+                                <a href="/excluirVaga/<%= vaga[i]["id_vaga"] %></a>" class="btn btn-danger">Excluir vaga</a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <% } else if(user.tipo_usuario == "candidato"){ %>
+                    </div>        
+                <% } %>
+            <% } else if(logado.tipo_usuario == "candidato"){ %>
                 <h1>candidato</h1>
             <% } %>
-        <% } %>
+
 
     </div>
     <%- include('footer'); %>

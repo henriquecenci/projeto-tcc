@@ -9,7 +9,7 @@ module.exports = {
         ];
         con.query(sql, [values], function (err, result) {
             if (err) throw err;
-            console.log("Numero de registros inseridos: " + result.affectedRows);
+            console.log("Numero de registros inseridos: " + result.affectedRows + " " + titulo);
         });
     },
 

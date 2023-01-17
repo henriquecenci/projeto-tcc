@@ -12,7 +12,7 @@ const vagaController = {
             fields['descricao'], fields['requisitos'], id_usuario);
             });
 
-        res.redirect('/usuario');
+        res.redirect('/usuario/'+id_usuario);
     },
     
     //------------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ const vagaController = {
         var page = 0
 
         contagem = "SELECT COUNT(*) as numero FROM vaga";
-        var sql = "SELECT * FROM vaga ORDER BY id_vaga DESC LIMIT ? OFFSET ?"
+        var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = vaga.id_usuario ORDER BY id_vaga DESC LIMIT ? OFFSET ?;";
         con.query(contagem, function (err, result2, fields) {
             if (err) throw err;
             con.query(sql, [perPage, page], function (err, result, fields) {
@@ -41,7 +41,7 @@ const vagaController = {
         var page = page * perPage
 
         contagem = "SELECT COUNT(*) as numero FROM vaga";
-        var sql = "SELECT * FROM vaga ORDER BY id_vaga ASC LIMIT ? OFFSET ?"
+        var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = vaga.id_usuario ORDER BY id_vaga DESC LIMIT ? OFFSET ?;";
         con.query(contagem, function (err, result2, fields) {
             if (err) throw err;
             con.query(sql, [perPage, page], function (err, result, fields) {
@@ -58,13 +58,14 @@ const vagaController = {
     //------------------------------------------------------------------------------------------------------------------------------
 
     pesquisa: (req, res, pesquisa) => {
-        var sql = "SELECT * FROM vaga WHERE titulo LIKE '%"+pesquisa+"%' ORDER BY id_vaga DESC"
+        var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE titulo LIKE '%"+pesquisa+"%' AND usuario.id_usuario = vaga.id_usuario ORDER BY id_vaga DESC;"
+        
         con.query(sql, function (err, result, fields) {
             if (err) throw err;
                 if(req.session.loggedin)
-                    res.render('vagas-search.ejs', { vagas: result, logado: req.session.userdata})
+                    res.render('vagas-2.ejs', { vagas: result, logado: req.session.userdata})
                 else
-                   res.render('vagas-search.ejs', { vagas: result, logado: null})
+                    res.render('vagas-2.ejs', { vagas: result, logado: null})
         });
     },
 
@@ -72,7 +73,7 @@ const vagaController = {
 
     filtrar: (req, res, salario, cidade, tipo, turno) => {
 
-        var sql = "SELECT * FROM vaga"
+        var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario"
 
         if(tipo != "todos"){
             sql += " WHERE tipo_vaga = '"+tipo+"'"
@@ -120,13 +121,13 @@ const vagaController = {
             sql += " WHERE horario_trabalho = '"+turno+"'"
         }
 
-        sql += " ORDER BY id_vaga DESC"
+        sql += " AND usuario.id_usuario = vaga.id_usuario ORDER BY id_vaga DESC;"
         con.query(sql, function (err, result, fields) {
             if (err) throw err;
                 if(req.session.loggedin)
-                    res.render('vagas-filter.ejs', { vagas: result, logado: req.session.userdata})
+                    res.render('vagas-2.ejs', { vagas: result, logado: req.session.userdata})
                 else
-                   res.render('vagas-filter.ejs', { vagas: result, logado: null})
+                    res.render('vagas-2.ejs', { vagas: result, logado: null})
         });
     },
 }

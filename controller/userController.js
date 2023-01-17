@@ -77,20 +77,17 @@ const userController = {
 
      //----------------------------------------------------------------------------------
 
-     perfil: (req, res, id_anunciante) => {
-        var usuario = "SELECT * FROM usuario WHERE id_usuario = "+id_anunciante+""
-        var sql = "SELECT vaga.*, usuario.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = "+id_anunciante+" AND vaga.id_usuario = "+id_anunciante+"";
+     perfil: (req, res, id_usuario) => {
+        var usuario = "SELECT * FROM usuario WHERE id_usuario = "+id_usuario+""
+        var sql = "SELECT vaga.*, usuario.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = "+id_usuario+" AND vaga.id_usuario = "+id_usuario+"";
         
         con.query(usuario, function (err, result2, fields) {
             if (err) throw err;
-            con.query(sql, function (err, result, fields) {
-                if (err) throw err;
-                    if(req.session.loggedin)
-                        res.render('usuario.ejs', { vaga: result, logado: req.session.userdata, user: result2})
-                    else
-                    res.render('error.ejs', { mensagem: "Ops! Você precisa estar logado para fazer isso!"})
+                if(req.session.loggedin)
+                    res.render('usuario.ejs', { vaga: "Bolsonaro", user: result2, logado: req.session.userdata })
+                else
+                res.render('error.ejs', { mensagem: "Ops! Você precisa estar logado para fazer isso!"})
             });
-        });
     }
 }
 

@@ -12,17 +12,13 @@
                         <a class="nav-link" href="/"><button type="button" class="btn btn-info" style="margin-top: 4px;">Início</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/vagas"><button type="button" class="btn btn-success" style="margin-top: 4px;">Ver vagas</button></a>
+                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-success" style="margin-top: 4px;">Ver vagas</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
                     </li>
                     <li class="nav-item">
-                        <% if(logado.foto_perfil != null){ %>
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario %>"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
-                        <% }else{ %>    
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario %>"><img src="img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
-                        <%}%>
+                        <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
                     </li>
                 </ul>
             </div>
@@ -39,11 +35,7 @@
                         <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
                     </li>
                     <li class="nav-item">
-                        <% if(logado.foto_perfil != null){ %>
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario %>"><img src="imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
-                        <% }else{ %>    
-                            <a class="nav-link" href="/usuario/<%= logado.id_usuario %>"><img src="img/anunciante.png" class="rounded-circle" alt="perfil" style="width: 50px; height: 50px;"></a>
-                        <%}%>
+                        <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
                     </li>
                 </ul>
             </div>

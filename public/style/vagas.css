@@ -18,7 +18,7 @@ body{
 }
 
 h3{
-    margin-left: -90%;
+    margin-left: -100%;
 }
 
 /*-------------------------------- */
@@ -59,4 +59,8 @@ h2{
 
 .row{
     margin-left: 2%;
+}
+
+h4{
+    font-weight: bold;
 }

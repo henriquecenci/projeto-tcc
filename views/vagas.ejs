@@ -18,9 +18,9 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault1" value="todos" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">Todos</label><br>
-                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="jovem_aprendiz">
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault2" value="Jovem aprendíz">
                                 <label class="form-check-label" for="flexRadioDefault2">Jovem aprendíz</label><br>
-                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault3" value="estagio">
+                                <input class="form-check-input" type="radio" name="tipo" id="flexRadioDefault3" value="Estágio">
                                 <label class="form-check-label" for="flexRadioDefault3">Estágio</label><br>
                             </div>
                         </div>
@@ -28,9 +28,9 @@
                             <label for="localizacao">Localização:</label><br>
                             <select select class="form-control" id="exampleFormControlSelect1" name="cidade">
                                 <option value="todas" selected>Todas</option>
-                                <option value="GR">Gravataí - RS</option>
-                                <option value="POA">Porto Alegre - RS</option>
-                                <option value="CX">Cachoeirinha - RS</option>
+                                <option value="Gravataí - RS">Gravataí - RS</option>
+                                <option value="Porto Alegre - RS">Porto Alegre - RS</option>
+                                <option value="Cachoeirinha - RS">Cachoeirinha - RS</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -46,9 +46,9 @@
                             <label for="localizacao">Turno:</label><br>
                             <select select class="form-control" id="exampleFormControlSelect1" name="turno">
                                 <option value="todos" selected>Todos</option>
-                                <option value="manha">Manhã</option>
-                                <option value="tarde">Tarde</option>
-                                <option value="integral">Integral</option>
+                                <option value="Manhã">Manhã</option>
+                                <option value="Tarde">Tarde</option>
+                                <option value="Integral">Integral</option>
                             </select>
                         </div><br>
                         <p align="center"><button type="submit" class="btn-lg btn-outline-dark">⠀⠀⠀⠀Filtrar⠀⠀⠀⠀</button></p>
@@ -62,11 +62,17 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <img src="/img/anunciante.jpg" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; padding-top: 2%;">
+                                        <% if(vaga.foto_perfil == null){ %>
+                                            <img src="/img/anunciante.png" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; margin-left: -20px;">
+                                        <% } else {%>
+                                            <img src="/imagens/<%= vaga.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; margin-left: -20px;">
+                                        <% } %>
                                     </div>
-                                    <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
+                                    <div class="col">
+                                        <h3 class="card-title"><%= vaga.titulo %></h3>
+                                    </div>
                                 </div>
-                                <h6 class="card-subtitle mb-2 text-muted">Nome anunciante/ <%= vaga.localizacao %></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><%= vaga.nome %> / <%= vaga.localizacao %></h6>
                                 <p class="card-text text-truncate"><%= vaga.descricao %></p>
                             </div>
                         </div>
@@ -82,13 +88,13 @@
                         <% for (var i = 0; i < vagas.length; i++) { %>
                             <% if (i==0) { %>
                                 <div class="card-body selecionada" id="<%= 'seleciona_' + vagas[i]['id_vaga'] %>" style = "display: block;">
-                                    <h2><p align="center"><%= vagas[i]['titulo'] %> / <%= vagas[i]['tipo_vaga'] %> </p></h2><br>
+                                    <h2><p align="center"><%= vagas[i]['titulo'] %></p></h2><br>
                                     <div class="row">
                                         <div class="col">
                                             <p class="detalhamento-p">Cargo: <%= vagas[i]['tipo_vaga'] %> </p>
                                             <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
-                                            <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
-                                            <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
+                                            <p class="detalhamento-p">Carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
+                                            <p class="detalhamento-p">Período de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
                                             <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
                                         </div>
         
@@ -103,14 +109,11 @@
                                         </div>
                                     </div>
         
-                                    <h4>Requisitos e qualificações</h4>
-                                    <ul>
-                                        <li>
-                                            <%= vagas[i]['requisitos'] %>
-                                        </li>
-                                      
-                                    </ul><br>
-        
+                                    <h4>Requisitos e qualificações:</h4>
+                                    <p class="detalhamento-p">
+                                        <%= vagas[i]['requisitos'] %>
+                                    </p><br>
+                                    
                                     <h4>Descricação da vaga:</h4>
                                     <p class="detalhamento-p">
                                         <%= vagas[i]['descricao'] %>
@@ -124,8 +127,8 @@
                                             <div class="col">
                                                 <p class="detalhamento-p">Cargo: <%= vagas[i]['tipo_vaga'] %> </p>
                                                 <p class="detalhamento-p">Salario: R$<%= vagas[i]['salario'] %>,00 </p>
-                                                <p class="detalhamento-p">carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
-                                                <p class="detalhamento-p">horario de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
+                                                <p class="detalhamento-p">Carga horaria: <%= vagas[i]['carga_horaria'] %> horas</p>
+                                                <p class="detalhamento-p">Período de trabalho: <%= vagas[i]['horario_trabalho'] %></p>
                                                 <p class="detalhamento-p">Localização: <%= vagas[i]['localizacao'] %></p><br>
                                             </div>
             
@@ -140,13 +143,10 @@
                                             </div>
                                         </div>
             
-                                        <h4>Requisitos e qualificações</h4>
-                                        <ul>
-                                            <li>
-                                                <%= vagas[i]['requisitos'] %>
-                                            </li>
-                                          
-                                        </ul><br>
+                                        <h4>Requisitos e qualificações:</h4>
+                                        <p class="detalhamento-p">
+                                            <%= vagas[i]['requisitos'] %>
+                                        </p><br>
             
                                         <h4>Descricação da vaga:</h4>
                                         <p class="detalhamento-p">
