@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="style/anunciar.css">
 </head>
 <body>
-    <p align="left"><a href="/usuario"><button type="button" class="btn btn-outline-light" id="voltar">Voltar</button></a></p>
+    <p align="left"><a href="/usuario/<%= logado.id_usuario%>"><button type="button" class="btn btn-outline-light" id="voltar">Voltar</button></a></p>
 <div class="container" id="container">
 <div class="bloco">
     <form method="POST" action="/anunciar/<%= logado.id_usuario %>" enctype="multipart/form-data">

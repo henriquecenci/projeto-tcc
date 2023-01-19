@@ -1,64 +1,12 @@
 <link rel="stylesheet" href="/style/nav.css">
-<nav class="navbar navbar-expand-lg bg-light fixed">
-    <div class="container">
+
+<div class="container-lg">
+    <nav class="navbar bg-light">
         <a class="navbar-brand" href="/">JOBSOURCE</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <% if(logado && logado.tipo_usuario == "candidato"){ %>
-            <div class="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><button type="button" class="btn btn-info" style="margin-top: 4px;">Início</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-success" style="margin-top: 4px;">Ver vagas</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
-                    </li>
-                </ul>
-            </div>
-        <% }else if(logado && logado.tipo_usuario == "anunciante"){%>
-            <div class="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"><button type="button" class="btn btn-info" style="margin-top: 4px;">Início</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/anunciar"><button type="button" class="btn btn-success" style="margin-top: 4px;">Anunciar</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Sair</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
-                    </li>
-                </ul>
-            </div>
-        <% }else{ %>
-            <div class="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Início</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/vagas">Ver Vagas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/candidato">Cadastrar-se</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/login">Logar-se</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/anunciante">Virar Anunciante</a>
-                    </li>
-                </ul>
-            </div>
-        <%}%>
-    </div>
-</nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/"><button type="button" class="btn btn-info" style="margin-top: 4px;">Início</button></a>
+            </li>
+          </ul>
+    </nav>
+</div>

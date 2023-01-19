@@ -12,35 +12,94 @@
     <div class="container-lg">
         <div class="infos">
             <% if(logado.foto_perfil != null){ %>
-                <p align="center"><img src="/imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
+                <p class="text-center"><img src="/imagens/<%= logado.foto_perfil %>" class="rounded-circle" alt="perfil" id="imagem"></p>
             <% }else if(logado.tipo_usuario == "anunciante"){ %>    
-                <p align="center"><img src="/img/anunciante.png" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
+                <p class="text-center"><img src="/img/anunciante.png" class="rounded-circle" alt="perfil" id="imagem"></p>
             <%}else if(logado.tipo_usuario == "candidato"){%>
-                <p align="center"><img src="/img/perfil.jpg" class="rounded-circle" alt="perfil" style="width: 200px; height: 200px;"></p>
-            <%}%>
-           
-            <h3><p align="center">Seja bem vindo, <%= logado.nome %>!</p></h3>
+                <p class="text-center"><img src="/img/perfil.jpg" class="rounded-circle" alt="perfil" id="imagem"></p>
+            <%}%>  
+
+
+            <h3><p class="text-center"> Seja bem vindo, <%= logado.nome %>!</p></h3>
+
+            <% if(logado.tipo_usuario == "candidato"){ %>
+                <nav class="navbar navbar-expand-lg" id="b-usuario">
+                    <div class="navbar">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/vagas"><button type="button" class="btn btn-success" style="margin-top: 4px;">Ver vagas</button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Deslogar</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            <% }else if(logado.tipo_usuario == "anunciante"){%>
+                <nav class="navbar navbar-expand-lg" id="b-usuario">
+                    <div class="navbar">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/anunciar"><button type="button" class="btn btn-success" style="margin-top: 4px;">Anunciar</button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/editarCadastro/<%= logado.id_usuario%>"><button type="button" class="btn btn-secondary" style="margin-top: 4px;">Editar Cadastro</button></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout"><button type="button" class="btn btn-danger" style="margin-top: 4px;">Deslogar</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            <% } %>                 
         </div>
     </div>
-    <div class="container mt-5">
 
+    <div class="container mt-4">
 
             <% if(logado.tipo_usuario == "anunciante"){ %>
-                <h1>anunciante</h1>        
-                <% for (var i = 0; i < vaga.length; i++) { %>
-                    <div class="card" style="width: 20rem; height: 13rem;">
-                        <div class="card-body">
-                            <h2 class="card-title"><p align="center"><%= vaga[i]["titulo"] %></p></h2>
-
-                            <div class="d-grid">
-                                <a href="/editarVaga/<%= vaga[i]["id_vaga"] %>" class="btn btn-success">Editar vaga</a><br>
-                                <a href="/excluirVaga/<%= vaga[i]["id_vaga"] %></a>" class="btn btn-danger">Excluir vaga</a>
+                <h3><p class="text-center mb-4" style="color: white; letter-spacing: 4px; font-weight: bold;">Seus anúncios de vaga</p></h3>
+                <div class="row">
+                    <% for (var i = 0; i < vagas.length; i++) { %>
+                        <div class="col-4">
+                            <div class="card mb-5" style="width: 350px; height: 220px;">
+                                <div class="card-body">
+                                  <h4 class="card-title text-center" style="font-weight: bold; text-transform: uppercase;"><%= vagas[i]["titulo"] %></h4>
+                                  <a href="/editarVaga/<%= vagas[i]["id_vaga"] %>"><button type="button" class="btn btn-info btn-lg btn-block mb-2" style="margin-top: 20px;">Editar vaga</button></a>
+                                  <a href="#"><button type="button" class="btn btn-dark btn-lg btn-block mb-2">Ver candidaturas</button></a>
+                                </div>
                             </div>
                         </div>
-                    </div>        
-                <% } %>
+                    <% } %> 
+                </div>
+  
             <% } else if(logado.tipo_usuario == "candidato"){ %>
-                <h1>candidato</h1>
+                <div class="row">   
+                    <% for (var i = 0; i < candidaturas.length; i++) { %>
+                    
+                        <div class="col-4">
+                            <div class="card mb-5" style="width: 350px; height: 220px;">
+                                <div class="card-body">
+                                  <h4 class="card-title text-center" style="font-weight: bold; text-transform: uppercase;"><%= candidaturas[i]["titulo"] %></h4>
+                                    <% if(candidaturas[i]["status_candidatura"] == "em andamento"){ %>
+                                        <button type="button" class="btn btn-info btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Em andamento</button>
+                                    <% }else if(candidaturas[i]["status_candidatura"] == "aprovado"){ %>
+                                        <button type="button" class="btn btn-success btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Aprovado</button>
+                                    <% }else if(candidaturas[i]["status_candidatura"] == "reprovado"){ %>
+                                        <button type="button" class="btn btn-danger btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Reprovado</button>
+                                    <% } %>
+                                    
+                                    <a href="#"><button type="button" class="btn btn-danger btn-lg btn-block mb-2">Cancelar candidatura</button></a>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <% } %>
+                </div> 
             <% } %>
 
 

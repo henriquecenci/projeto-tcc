@@ -62,7 +62,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <img src="/imagens/<%= vaga.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; margin-left: -20px;">
+                                        <% if(vaga.foto_perfil == null){ %>
+                                            <img src="/img/anunciante.png" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; margin-left: -20px;">
+                                        <% } else {%>
+                                            <img src="/imagens/<%= vaga.foto_perfil %>" class="rounded-circle" alt="perfil" style="width: 40px; height: 40px; margin-left: -20px;">
+                                        <% } %>
                                     </div>
                                     <div class="col"><h3 class="card-title"><%= vaga.titulo %></h3></div>
                                 </div>
