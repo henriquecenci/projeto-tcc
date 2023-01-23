@@ -31,7 +31,19 @@ var vagaController = require('../controller/vagaController.js')
             let turno = req.query.turno;
 
             vagaController.filtrar(req, res, salario, cidade, tipo, turno);
-        }
+        },
+
+        editarVaga: (req, res) => {
+            let id_vaga = req.params.id;
+
+            vagaController.editarVaga(req, res, id_vaga);
+        },
+
+        confirmaEdit: (req, res) => {
+            let id_vaga = req.params.id;
+            let id_usuario = req.params.iduser;
+            vagaController.confirmaEdit(req, res, id_vaga, id_usuario);
+        },
     }
 
 module.exports = vagaRoutes;

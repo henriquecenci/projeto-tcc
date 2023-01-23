@@ -9,7 +9,7 @@ body{
     background-color: #12335E;
 }
 .infos{
-    padding-top: 5%;
+    padding-top: 4%;
     width: 100%;
     height: 350px;
     background-color: #0c2143;
@@ -20,6 +20,7 @@ h3{
 }
 
 #b-usuario{
+    padding-left: 560px;
     margin-top: -1%;
 }
 

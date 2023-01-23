@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<%- include('head'); %>
+<link rel="stylesheet" href="/style/listarCandidatura.css">
+</head>
+<a href="/usuario/<%= logado.id_usuario %>"><button type="button" class="btn btn-outline-light" id="voltar">Voltar</button></a>
+
+<h1>
+    <p class="text-center">JOBSOURCE</p>
+</h1>
+<body>
+    <div class="container">
+        <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Candidato</th>
+                <th scope="col">Curriculo</th>
+                <th scope="col">Resposta</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% candidaturas.forEach(function(candidatura) { %>
+              <tr>
+                <th scope="row"></th>
+                <td><%= candidatura.nome %></td>
+                <td><a href="/curriculos/<%= candidatura.curriculo %>"><button type="button" class="btn btn-light">Prévia</button></a></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-success">✓</button>
+
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" onclick="cancelarCandidatura( +<%= candidatura.id_usuario %>+ )">X</button>
+                        
+                        <div class="modal fade teste<%= candidatura.id_usuario %>" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">Tem certeza que deseja cancelar a candidatura de <span class="badge badge-primary"><%= candidatura.nome%></span> para a vaga <span class="badge badge-info"><%= candidatura.titulo %></span>?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/cancelarCandidatura/<%= candidatura.id_candidatura %>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-success">Sim</button></a>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                      </div>
+                </td>
+              </tr>
+            <% }) %>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
+
+<script>
+  async function cancelarCandidatura(id_usuario){
+    console.log(id_usuario)
+    const modal = document.querySelector('.teste'+id_usuario);
+    modal.classList.remove('hidden');
+  }
+</script>

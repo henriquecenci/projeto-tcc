@@ -31,8 +31,14 @@ const userController = require("../controller/userController.js")
             userController.perfil(req, res, id_usuario)
         },
 
-        cadastro: (req, res) => {
-            
+        editarCadastro: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.editarCadastro(req, res, id_usuario)            
+        },
+
+        confirmaEdit: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.confirmaEdit(req, res, id_usuario)            
         },
 
         error: (req, res) => {

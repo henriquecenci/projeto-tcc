@@ -58,7 +58,7 @@
             <div class="col-4" id="vagas">
                 <div class="container">
                     <% vagas.forEach(function(vaga) { %>
-                        <div class="card mt-2 lista_vagas" style="width: 100%; height: 10rem;" id="<%= 'card_' +vaga['id_vaga'] %>" onclick="selecionar( <%= vaga['id_vaga'] %> )">
+                        <div class="card mt-2 lista_vagas" style="width: 100%; height: 10rem;" id="<%= 'card_' +vaga['id_vaga'] %>" onclick="selecionar( +<%= vaga['id_vaga'] %> )">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -99,7 +99,7 @@
                                                     <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
                                                 </p>
                                             <%} else {%>
-                                                <a href="/login" ><p class="text-right" style="margin-right: 25%; font-size: 20px;"><span class="badge badge-warning">Faça o login para<br> se candidatar</span></p></a>
+                                                    <a href="/login" class="badge badge-warning"><p class="text-right" style="margin-right: 25%; font-size: 20px;">Faça o login para<br> se candidatar</p></a>
                                             <% } %>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                                         <a href="/candidatura/<%= vagas[i]['id_vaga']%>"><button type="button" class="btn btn-info">Candidatar-se</button></a>
                                                     </p>
                                                 <%} else {%>
-                                                    <a href="/login" ><p class="text-right" style="margin-right: 25%; font-size: 20px;"><span class="badge badge-warning">Faça o login para<br> se candidatar</span></p></a>
+                                                    <a href="/login" class="badge badge-warning"><p class="text-right" style="margin-right: 25%; font-size: 20px;">Faça o login para<br> se candidatar</p></a>
                                                 <% } %>
                                             </div>
                                         </div>

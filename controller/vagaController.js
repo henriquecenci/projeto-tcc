@@ -10,7 +10,7 @@ const vagaController = {
             vagaModel.anunciar(fields['titulo'], fields['salario'], fields['beneficios'], 
             fields['cidade'], fields['carga_horaria'], fields['turno'], fields['tipo_vaga'], 
             fields['descricao'], fields['requisitos'], id_usuario);
-            });
+        });
 
         res.redirect('/usuario/'+id_usuario);
     },
@@ -130,6 +130,43 @@ const vagaController = {
                     res.render('vagas-2.ejs', { vagas: result, logado: null})
         });
     },
+
+    editarVaga: (req, res, id_vaga) => {
+        sql = "SELECT * FROM vaga WHERE id_vaga = "+id_vaga+"";
+
+        con.query(sql, function (err, result, fields) {
+            if (err) throw err;
+                if(req.session.loggedin)
+                    res.render('editarVaga.ejs', { dados: result, logado: req.session.userdata})
+                else
+                    res.render('error.ejs',  {mensagem: "Ops! Você precisa estar logado para fazer isso."})
+        });
+    },
+
+    confirmaEdit: (req, res, id_vaga) => {
+        var form = new formidable.IncomingForm();
+        form.parse(req, (err, fields) => {
+            var titulo = fields['titulo']
+            var salario = fields['salario']
+            var beneficios = fields['beneficios']
+            var carga_horaria = fields['carga_horaria']
+            var turno = fields['turno']
+            var tipo_vaga = fields['tipo_vaga']
+            var descricao = fields['descricao']
+            var requisitos = fields['requisitos']
+            var cidade = fields['cidade']
+
+
+            sql = "UPDATE vaga SET titulo = '"+titulo+"', salario = "+salario+", beneficios = '"+beneficios+"', localizacao = '"+cidade+"', carga_horaria = '"+carga_horaria+"', horario_trabalho = '"+turno+"', tipo_vaga = '"+tipo_vaga+"', descricao = '"+descricao+"', requisitos = '"+requisitos+"' WHERE id_vaga = "+id_vaga+"";
+            
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("Numero de registros editados: " + result.affectedRows);
+            });
+            res.redirect('/usuario/' + id_usuario)
+        });
+    },
+
 }
 
 module.exports = vagaController;

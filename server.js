@@ -69,6 +69,15 @@ app.get('/usuario/:id', function(req, res){
     userRoutes.perfil(req, res);
 });
 
+//editar cadsatro--------------------------------
+app.get('/editarCadastro/:id', function(req, res){
+    userRoutes.editarCadastro(req, res);
+});
+
+app.post('/editarCadastro/:id', function(req, res){
+    userRoutes.confirmaEdit(req, res);
+});
+
 //listar----------------------------------------
 app.get('/vagas', function(req, res){
     vagaRoutes.vagas(req, res);
@@ -85,6 +94,25 @@ app.get('/vagas-search', function(req, res){
 app.get('/vagas-filter', function(req, res){
     vagaRoutes.filtro(req, res);
 });
+
+//listar candidaturas--------------------------
+app.get('/listarCandidaturas/:idvaga', function (req, res) {
+    candidaturaRoutes.listarCandidaturas(req, res)
+});
+
+app.get('/cancelarCandidatura/:id/:idvaga', function (req, res) {
+    candidaturaRoutes.cancelarCandidatura(req, res)
+});
+
+//Editar vaga ---------------------------------
+app.get('/editarVaga/:id', function(req, res){
+    vagaRoutes.editarVaga(req, res)
+});
+
+app.post('/editarVaga/:id/:iduser', function(req, res){
+    vagaRoutes.confirmaEdit(req, res)
+});
+
 //candidatura ---------------------------------
 app.get('/candidatura/:id', function (req, res) {
     candidaturaRoutes.candidatura(req, res)

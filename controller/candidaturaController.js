@@ -56,6 +56,38 @@ const candidaturaController = {
             }else{
                 res.render("error.ejs", {mensagem: "Ops! Você precisa estar logado para fazer isso."});
             }    
+        },
+
+        listarCandidatura: (req, res, id_vaga) => {
+            var sql = "SELECT * FROM candidatura JOIN vaga ON candidatura.id_vaga = vaga.id_vaga JOIN usuario ON candidatura.id_usuario = usuario.id_usuario WHERE candidatura.id_vaga = "+id_vaga+";";
+            
+            con.query(sql, function (err, result, fields) {
+                if (err) throw err;
+                if(req.session.loggedin)
+                    res.render('listarCandidaturas.ejs', {logado: req.session.userdata, candidaturas: result});
+                else 
+                    res.render('error.ejs', {mensagem: "Ops! Você precisa estar logado para fazer isso."});
+            });
+        },
+
+        cancelarCandidatura: (req, res, id_candidarura, id_vaga) => {
+            var sql = "DELETE FROM candidatura WHERE id_candidatura = "+id_candidarura+""
+            
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("registro apagado?" + result.affectedRows);
+            });
+            res.redirect('/listarCandidaturas/' + id_vaga);
+        },
+
+        aprovaCandidatura: (req, res, id_candidatura, id_vaga) =>{
+            var sql = "UPDATE candidatura SET status_candidatura = 'aprovado' WHERE id_candidatura ="+id_candidatura+""
+
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("registro apagado?" + result.affectedRows);
+            });
+            res.redirect('/listarCandidaturas/' + id_vaga);
         }
 }
 
