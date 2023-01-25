@@ -143,7 +143,7 @@ const vagaController = {
         });
     },
 
-    confirmaEdit: (req, res, id_vaga) => {
+    confirmaEdit: (req, res, id_vaga, id_usuario) => {
         var form = new formidable.IncomingForm();
         form.parse(req, (err, fields) => {
             var titulo = fields['titulo']
@@ -166,6 +166,16 @@ const vagaController = {
             res.redirect('/usuario/' + id_usuario)
         });
     },
+
+    deletarVaga: (req, res, id_vaga, id_usuario) => {
+        sql = "DELETE FROM vaga WHERE id_vaga = "+id_vaga+"";
+
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Numero de registros apagados: " + result.affectedRows);
+        });
+        res.redirect('/usuario/' + id_usuario)
+    }
 
 }
 

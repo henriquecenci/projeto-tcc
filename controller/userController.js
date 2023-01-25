@@ -98,45 +98,93 @@ const userController = {
         con.query(sql, function (err, result, fields) {
             if (err) throw err;
                 if (req.session.loggedin) {
-                    if(typeof req.session.mensagem != 'undefined')
-                        res.render('editarCadastro.ejs', { usuario: result, logado: req.session.userdata, mensagem: req.session.mensagem});
-                    else 
-                        res.render('editarCadastro.ejs', { usuario: result, logado: req.session.userdata, mensagem: null});
+                    res.render('editarCadastro.ejs', { usuario: result, logado: req.session.userdata, mensagem: req.session.mensagem1, mensagemErro: req.session.mensagemErro});
                 }else {
                     res.render('error.ejs',  {mensagem: "Ops! Você precisa estar logado para fazer isso."})
                 }
         });
     },
 
-    confirmaEdit: (req, res, id_usuario) => {
+    confirmaEditSenha: (req, res, id_usuario) => {
+        var form = new formidable.IncomingForm();
+        form.parse(req, (err, fields, files) => {
+            var senha = fields['senha'];
+            
+            bcrypt.hash(senha, saltRounds, function (err, hash) {
+                var sql = "UPDATE usuario SET senha = ? WHERE id_usuario = ?";
+                var values = [hash, id_usuario];
+                    
+                    con.query(sql, values, function (err, result) {
+                        if (err) throw err;
+                        console.log("senhas alteradas:" + result.affectedRows +" : "+ senha);
+                    });
+                });
+                req.session.mensagem1 = "Senha alterada com sucesso!"
+                res.redirect('/editarCadastro/'+ id_usuario);
+            });
+
+    },
+
+    confirmaEditInfos: (req, res, id_usuario) => {
         var form = new formidable.IncomingForm();
         form.parse(req, (err, fields, files) => {
             var nome = fields['nome'];
-            var email = fields['email'];
-            var senha = fields['senha'];
+            var email =  fields['email'];
+            
+            var sql = "UPDATE usuario SET nome = ?, email = ? WHERE id_usuario = ?";
+            var values = [nome, email, id_usuario];
+                    
+           con.query(sql, values, function (err, result) {
+               if (err) throw err;
+                console.log("cadastros alterados:" + result.affectedRows + " " + nome + " : " + email);
+            });
+            req.session.mensagem1 = "Informações alteradas com sucesso!"
+            res.redirect('/editarCadastro/'+ id_usuario);
+        });
 
-            if(files.imagem.size > 0){
-                var oldpath = files.imagem.filepath;
+    },
+
+    confirmaEditFoto: (req, res, id_usuario) => {
+        var form = new formidable.IncomingForm();
+        form.parse(req, (err, fields, files) => {
+
+            var oldpath = files.imagem.filepath;
+            let extensao = files.imagem.mimetype.split('/')[1]
+            if(extensao == "png" || extensao == "jpeg" || extensao == "gif" || extensao == "jpg"){
                 var hash = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
-                var img = hash + '.' + files.imagem.mimetype.split('/')[1]
-                var newpath = path.join(__dirname, 'public/imagens/', img);
-        
-                    fs.rename(oldpath, newpath, function (err) {
-                        if (err) throw err;
-                    });
-            }
-            bcrypt.hash(senha, saltRounds, function (err, hash) {
-                var sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, foto_perfil = ? WHERE id_usuario = ?";
-                var values = [nome, email, hash, img, id_usuario];
-                
+                img = hash + '.' + files.imagem.mimetype.split('/')[1]
+                var newpath = path.join(__dirname, '../public/imagens/', img);
+    
+                fs.rename(oldpath, newpath, function (err) {
+                    if (err) throw err;
+                });
+
+                var sql = "UPDATE usuario SET foto_perfil = ? WHERE id_usuario = ?";
+                var values = [img, id_usuario]; 
+    
                 con.query(sql, values, function (err, result) {
                     if (err) throw err;
-                    console.log("cadastro:" + nome + " foi alterado:" + result.affectedRows);
-                });
-            });
+                     console.log("fotos alteradas:" + result.affectedRows);
+                 });
+                 req.session.mensagem1 = "Foto de perfil alterada com sucesso!"
+                 res.redirect('/editarCadastro/'+ id_usuario);
+            } else {
+                req.session.mensagemErro = "Apenas imagens são aceitas como foto de perfil."
+                res.redirect('/editarCadastro/'+ id_usuario);
+            }
         });
-        req.session.mensagem = "Cadastro alterado com sucesso!"
-        res.redirect('/editarCadastro/'+ id_usuario);
+
+    },
+
+    deletarCadastro: (req, res, id_usuario) => {
+        sql = "DELETE FROM usuario WHERE id_usuario ="+id_usuario+"";
+
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("cadastros deletados:" + result.affectedRows);
+        });
+
+        res.redirect('/')
     }
 }
 

@@ -44,6 +44,12 @@ var vagaController = require('../controller/vagaController.js')
             let id_usuario = req.params.iduser;
             vagaController.confirmaEdit(req, res, id_vaga, id_usuario);
         },
+
+        deletarVaga: (req, res) => {
+            let id_vaga = req.params.id;
+            let id_usuario = req.params.iduser;
+            vagaController.deletarVaga(req, res, id_vaga, id_usuario);
+        }
     }
 
 module.exports = vagaRoutes;

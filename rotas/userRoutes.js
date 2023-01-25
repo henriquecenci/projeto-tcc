@@ -41,6 +41,26 @@ const userController = require("../controller/userController.js")
             userController.confirmaEdit(req, res, id_usuario)            
         },
 
+        deletarCadastro: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.deletarCadastro(req, res, id_usuario) 
+        },
+
+        confirmaEditSenha: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.confirmaEditSenha(req, res, id_usuario)
+        },
+
+        confirmaEditInfos: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.confirmaEditInfos(req, res, id_usuario)
+        },
+
+        confirmaEditFoto: (req, res) => {
+            var id_usuario = req.params.id;
+            userController.confirmaEditFoto(req, res, id_usuario)
+        },
+ 
         error: (req, res) => {
             res.render('error.ejs', {mensagem: "404 error"})
         }

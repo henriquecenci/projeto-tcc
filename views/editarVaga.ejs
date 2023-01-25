@@ -11,7 +11,28 @@
     <% dados.forEach(function(dado){ %>
         <form method="POST" action="/editarVaga/<%= dado.id_vaga %>/<%= logado.id_usuario %>" enctype="multipart/form-data">
 
-            <h2><p align="center">Editar vaga <b><%= dado.titulo %></b></p></h2><br>
+            <h2><p align="center">Editar vaga <b><%= dado.titulo %></b></p></h2>
+
+            <p align="center"><type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Deletar vaga</button></p><br>
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Tem certeza que deseja deletar a vaga <b style="text-transform: uppercase;"><%= dado.titulo %></b>?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="/deletarVaga/<%= dado.id_vaga%>/<%= logado.id_usuario %>"><button type="button" class="btn btn-success">Sim</button></a>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             <div class="row">
                 <div class="col">
                     <label for="titulo">Título da vaga:</label><br>
@@ -19,7 +40,7 @@
 
                     <label for="Beneficios">Benefícios:</label><br>
                     <select select class="form-control" id="exampleFormControlSelect1" name="beneficios" value=" <%= dado.beneficios %> ">
-                        <option value="Vale refeição" selected>Vale refeição</option>
+                        <option value="Vale refeição">Vale refeição</option>
                         <option value="Vale transporte">Vale transporte</option>
                         <option value="Seguro de vida">Seguro de vida</option>
                     </select>
@@ -73,37 +94,90 @@
                             <option value="Cachoeirinha - RS">Cachoeirinha - RS</option>
                           </select>
                     </div><br>
-        
-                    <div class="form-group">
-                        <label for="Beneficios">Horário de trabalho:</label><br>
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault1" value="Manhã" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">Manhã</label>
-                        </div>
-        
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault2" value="Tarde">
-                        <label class="form-check-label" for="flexRadioDefault2">Tarde</label>
-                        </div>
-        
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault3" value="Integral">
-                        <label class="form-check-label" for="flexRadioDefault2">Integral</label>
-                        </div>
-                    </div><br>
-        
-                    <div class="form-group">
-                        <label for="Beneficios">Tipo de vaga:</label><br>
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault" value="Estágio" checked>
-                        <label class="form-check-label" for="flexRadioDefault1">Estágio</label>
-                        </div>
-        
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault0" value="Jovem Aprendiz">
-                        <label class="form-check-label" for="flexRadioDefault2">Jovem Aprendiz</label>
-                        </div>
-                    </div><br>
+                    
+                    <% if(dado.horario_trabalho == "Manhã"){%>
+                        <div class="form-group">
+                            <label for="Beneficios">Horário de trabalho:</label><br>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault1" value="Manhã" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">Manhã</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault2" value="Tarde">
+                            <label class="form-check-label" for="flexRadioDefault2">Tarde</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault3" value="Integral">
+                            <label class="form-check-label" for="flexRadioDefault2">Integral</label>
+                            </div>
+                        </div><br>
+                    <% }else if(dado.horario_trabalho == "Tarde"){ %>
+                        <div class="form-group">
+                            <label for="Beneficios">Horário de trabalho:</label><br>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault1" value="Manhã">
+                            <label class="form-check-label" for="flexRadioDefault1">Manhã</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault2" value="Tarde" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">Tarde</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault3" value="Integral">
+                            <label class="form-check-label" for="flexRadioDefault2">Integral</label>
+                            </div>
+                        </div><br>
+                    <% } else if(dado.horario_trabalho == "Integral"){ %>
+                        <div class="form-group">
+                            <label for="Beneficios">Horário de trabalho:</label><br>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault1" value="Manhã">
+                            <label class="form-check-label" for="flexRadioDefault1">Manhã</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault2" value="Tarde">
+                            <label class="form-check-label" for="flexRadioDefault2">Tarde</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" id="flexRadioDefault3" value="Integral" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">Integral</label>
+                            </div>
+                        </div><br>
+                    <% } %>
+                    
+                    <% if(dado.tipo_vaga == "Estágio"){%>
+                        <div class="form-group">
+                            <label for="Beneficios">Tipo de vaga:</label><br>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault" value="Estágio" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">Estágio</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault0" value="Jovem Aprendiz">
+                            <label class="form-check-label" for="flexRadioDefault2">Jovem Aprendiz</label>
+                            </div>
+                        </div><br>
+                    <% } else if(dado.tipo_vaga == "Jovem Aprendiz"){ %>
+                        <div class="form-group">
+                            <label for="Beneficios">Tipo de vaga:</label><br>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault" value="Estágio">
+                            <label class="form-check-label" for="flexRadioDefault1">Estágio</label>
+                            </div>
+            
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo_vaga" id="flexRadioDefault0" value="Jovem Aprendiz" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">Jovem Aprendiz</label>
+                            </div>
+                        </div><br>
+                    <% } %>
                 </div>
 
                 <div class="col">

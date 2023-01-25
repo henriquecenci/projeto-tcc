@@ -11,9 +11,10 @@
     <div class="container" id="container">
         <div class="bloco">
             <h5><p class="text-center" style="color: green;"><%= mensagem %></p></h5>
+            <h5><p class="text-center" style="color: brown;"><%= mensagemErro %></p></h5>
             <div class="row">
                 <div class="col">
-                    <form method="POST" action="/editarCadastro/<%= logado.id_usuario %>" enctype="multipart/form-data">
+                    <form method="POST" action="/editarInfos/<%= logado.id_usuario %>" enctype="multipart/form-data">
                         <h4>
                             <p class="text-center" style="font-weight: bold;">Editar Informações</p>
                         </h4>
@@ -27,27 +28,57 @@
                             <p class="text-center"><input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" value = "<%= logado.email %>" required></p>
                         </div>
         
-                        <div class="form-group">
-                            <label for="foto">Foto de perfil (Opcional):</label><br>
-                            <p class="text-center"><input type="file" class="form-control-sm" name="imagem" value="<%= logado.foto_perfil %>"></p>
-                        </div><br>
-        
                         <p class="text-center"><input class='btn btn-outline-success btn-lg' type="submit" name="submit" value="⠀⠀⠀Confirmar⠀⠀⠀"></p><br>
                     </form>
                 </div>
                 <div class="col ml-5">
-                    <form method="POST" action="/editarCadastro/<%= logado.id_usuario %>" enctype="multipart/form-data">
+                    <form method="POST" action="/editarSenha/<%= logado.id_usuario %>" enctype="multipart/form-data">
                         <h4>
                             <p class="text-center" style="font-weight: bold;">Editar senha</p>
                         </h4>
         
                         <div class="form-group">
                             <label for="senha">Senha:</label><br>
-                            <p class="text-center"><input type="password" class="form-control" id="senha" placeholder="Digite uma senha" name="senha" value="<%= logado.senha %>"></p>
+                            <p class="text-center"><input type="password" class="form-control" id="senha" placeholder="Digite uma nova senha" name="senha"></p>
                         </div><br>
         
-                        <p class="text-center"><input class='btn btn-outline-success btn-lg' type="submit" name="submit" value="⠀⠀⠀Confirmar⠀⠀⠀"></p>
+                        <p class="text-center"><input class='btn btn-outline-info btn-lg' type="submit" name="submit" value="⠀⠀⠀Confirmar⠀⠀⠀"></p>
                     </form>
+                </div>
+                <div class="col ml-5">
+                    <form method="POST" action="/editarFoto/<%= logado.id_usuario %>" enctype="multipart/form-data">
+                        <h4>
+                            <p class="text-center" style="font-weight: bold;">Editar Foto de perfil</p>
+                        </h4> 
+                        <div class="form-group">
+                            <label for="foto">Foto de perfil:</label><br>
+                            <p class="text-center"><input type="file" class="form-control-sm" name="imagem"></p>
+                        </div><br>
+
+                        <p class="text-center"><input class='btn btn-outline-warning btn-lg' type="submit" name="submit" value="⠀⠀⠀Confirmar⠀⠀⠀"></p>
+                    </form>
+                </div>
+
+                <div class="col ml-5">
+                    <p align="center"><type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Deletar cadastro</button></p><br>
+
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">Tem certeza que deseja deletar seu cadastro, <b style="text-transform: uppercase;"><%= logado.nome %></b>?</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="/deletarCadastro/<%= logado.id_usuario %>"><button type="button" class="btn btn-success">Sim</button></a>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
                 </div>
             </div>
         </div>

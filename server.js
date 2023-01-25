@@ -74,11 +74,24 @@ app.get('/editarCadastro/:id', function(req, res){
     userRoutes.editarCadastro(req, res);
 });
 
-app.post('/editarCadastro/:id', function(req, res){
-    userRoutes.confirmaEdit(req, res);
+app.post('/editarSenha/:id', function(req, res){
+    userRoutes.confirmaEditSenha(req, res);
 });
 
-//listar----------------------------------------
+app.post('/editarInfos/:id', function(req, res){
+    userRoutes.confirmaEditInfos(req, res);
+});
+
+app.post('/editarFoto/:id', function(req, res){
+    userRoutes.confirmaEditFoto(req, res);
+});
+
+//deletar cadsatro-------------------------------
+app.get('/deletarCadastro/:id', function(req, res){
+    userRoutes.deletarCadastro(req, res);
+});
+
+//listar-----------------------------------------
 app.get('/vagas', function(req, res){
     vagaRoutes.vagas(req, res);
 });
@@ -111,6 +124,11 @@ app.get('/editarVaga/:id', function(req, res){
 
 app.post('/editarVaga/:id/:iduser', function(req, res){
     vagaRoutes.confirmaEdit(req, res)
+});
+
+//Editar vaga ---------------------------------
+app.get('/deletarVaga/:id/:iduser', function(req, res){
+    vagaRoutes.deletarVaga(req, res)
 });
 
 //candidatura ---------------------------------
