@@ -41,16 +41,12 @@ const userController = {
             }); 
         });
     },
-    
-    //----------------------------------------------------------------------------------
 
     logout: (req, res) => {
         req.session.destroy(function(err) {  
         })
         res.redirect('/');
     },
-
-    //----------------------------------------------------------------------------------
 
     cadastro: (req, res, tipo_usuario) => {
         var form = new formidable.IncomingForm();
@@ -75,11 +71,9 @@ const userController = {
         res.redirect('/login');
     },
 
-     //----------------------------------------------------------------------------------
-
      perfil: (req, res, id_usuario) => {
         var sql = "SELECT vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE usuario.id_usuario = "+id_usuario+" AND vaga.id_usuario = "+id_usuario+" ORDER BY id_vaga DESC;";
-        var sql2 = "SELECT candidatura.status_candidatura, vaga.titulo, usuario.nome FROM candidatura JOIN vaga ON candidatura.id_vaga = vaga.id_vaga JOIN usuario ON candidatura.id_usuario = usuario.id_usuario WHERE usuario.id_usuario = "+id_usuario+";"
+        var sql2 = "SELECT candidatura.*, vaga.titulo, usuario.nome FROM candidatura JOIN vaga ON candidatura.id_vaga = vaga.id_vaga JOIN usuario ON candidatura.id_usuario = usuario.id_usuario WHERE usuario.id_usuario = "+id_usuario+";"
 
         con.query(sql, function (err, result, fields) {
             if (err) throw err;
@@ -88,7 +82,7 @@ const userController = {
                     if(req.session.loggedin)
                         res.render('usuario.ejs', { vagas: result, logado: req.session.userdata, candidaturas: result2 })
                     else
-                        res.render('error.ejs', { mensagem: "Ops! Você precisa estar logado para fazer isso!"})
+                        res.render('error.ejs', { mensagem: "Ops! Você precisa estar logado para fazer isso."})
             });
         });
     },
@@ -185,7 +179,7 @@ const userController = {
         });
 
         res.redirect('/')
-    }
+    },
 }
 
 

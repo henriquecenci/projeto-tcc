@@ -88,6 +88,15 @@ const candidaturaController = {
                 console.log("registro apagado?" + result.affectedRows);
             });
             res.redirect('/listarCandidaturas/' + id_vaga);
+        },
+
+        excluirCandidatura: (req, res, id_candidatura) => {
+            sql = "DELETE FROM candidatura WHERE id_candidatura = "+id_candidatura+"";
+    
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("candidaturas deletadas:" + result.affectedRows);
+            });
         }
 }
 

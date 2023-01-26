@@ -24,6 +24,11 @@ const candidaturaController = require("../controller/candidaturaController.js");
             var id_vaga = req.params.idvaga;
             candidaturaController.cancelarCandidatura(req, res, id_candidatura, id_vaga);
         },
+
+        excluirCandidatura: (req, res) => {
+            var id_candidatura = req.params.id;
+            candidaturaController.excluirCandidatura(req, res, id_candidatura);
+        }
     }
 
 module.exports = candidaturaRoutes;

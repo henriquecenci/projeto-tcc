@@ -140,6 +140,11 @@ app.post('/candidatura/:idvaga/:idusuario', function(req, res){
     candidaturaRoutes.confirmarCandidatura(req, res)
 });
 
+//excluir candidaturas--------------------------
+app.get('/excluirCandidatura/:id', function (req, res) {
+    candidaturaRoutes.excluirCandidatura(req, res)
+});
+
 //error --------------------------------------
 
 app.get('/error', function(req, res){
