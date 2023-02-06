@@ -28,6 +28,18 @@ const candidaturaController = require("../controller/candidaturaController.js");
         excluirCandidatura: (req, res) => {
             var id_candidatura = req.params.id;
             candidaturaController.excluirCandidatura(req, res, id_candidatura);
+        },
+
+        aprovarCandidatura: (req, res) => {
+            var id_candidatura = req.params.id;
+            var id_vaga = req.params.idvaga;
+            candidaturaController.aprovaCandidatura(req, res, id_candidatura, id_vaga);
+        },
+
+        reverCandidatura: (req, res) => {
+            var id_candidatura = req.params.id;
+            var id_vaga = req.params.idvaga;
+            candidaturaController.reverCandidatura(req, res, id_candidatura, id_vaga);
         }
     }
 

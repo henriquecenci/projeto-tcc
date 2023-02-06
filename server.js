@@ -117,6 +117,14 @@ app.get('/cancelarCandidatura/:id/:idvaga', function (req, res) {
     candidaturaRoutes.cancelarCandidatura(req, res)
 });
 
+app.get('/aprovarCandidatura/:id/:idvaga', function (req, res) {
+    candidaturaRoutes.aprovarCandidatura(req, res)
+});
+
+app.get('/emAndamento/:id/:idvaga', function (req, res) {
+    candidaturaRoutes.reverCandidatura(req, res)
+});
+
 //Editar vaga ---------------------------------
 app.get('/editarVaga/:id', function(req, res){
     vagaRoutes.editarVaga(req, res)

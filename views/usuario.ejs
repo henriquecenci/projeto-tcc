@@ -87,6 +87,8 @@
                                         <button type="button" class="btn btn-info btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Em andamento</button>
                                     <% }else if(candidaturas[i]["status_candidatura"] == "aprovado"){ %>
                                         <button type="button" class="btn btn-success btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Aprovado</button>
+                                    <% }else if(candidaturas[i]["status_candidatura"] == "reprovado"){ %>
+                                        <button type="button" class="btn btn-danger btn-lg btn-block mb-2" style="margin-top: 20px;" disabled>Reprovado</button>
                                     <% } %>
 
                                     <a href="/excluirCandidatura/<%= candidaturas[i]["id_candidatura"] %>"><button type="button" class="btn btn-danger btn-lg btn-block mb-2">Cancelar candidatura</button></a>

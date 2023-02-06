@@ -70,12 +70,12 @@ const candidaturaController = {
             });
         },
 
-        cancelarCandidatura: (req, res, id_candidarura, id_vaga) => {
-            var sql = "DELETE FROM candidatura WHERE id_candidatura = "+id_candidarura+""
+        cancelarCandidatura: (req, res, id_candidatura, id_vaga) => {
+            var sql = "UPDATE candidatura SET status_candidatura = 'reprovado' WHERE id_candidatura ="+id_candidatura+""
             
             con.query(sql, function (err, result) {
                 if (err) throw err;
-                console.log("registro apagado?" + result.affectedRows);
+                console.log("registro reprovado?" + result.affectedRows);
             });
             res.redirect('/listarCandidaturas/' + id_vaga);
         },
@@ -85,7 +85,7 @@ const candidaturaController = {
 
             con.query(sql, function (err, result) {
                 if (err) throw err;
-                console.log("registro apagado?" + result.affectedRows);
+                console.log("registro aprovado?" + result.affectedRows);
             });
             res.redirect('/listarCandidaturas/' + id_vaga);
         },
@@ -97,6 +97,16 @@ const candidaturaController = {
                 if (err) throw err;
                 console.log("candidaturas deletadas:" + result.affectedRows);
             });
+        },
+
+        reverCandidatura: (req, res, id_candidatura, id_vaga) => {
+            sql = "UPDATE candidatura SET status_candidatura = 'em andamento' WHERE id_candidatura ="+id_candidatura+"";
+
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("candidaturas atualizada:" + result.affectedRows);
+            });
+            res.redirect('/listarCandidaturas/' + id_vaga);
         }
 }
 

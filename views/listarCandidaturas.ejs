@@ -15,7 +15,7 @@
         <table class="table table-striped table-dark">
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th scope="col">Status da candidatura</th>
                 <th scope="col">Candidato</th>
                 <th scope="col">Curriculo</th>
                 <th scope="col">Resposta</th>
@@ -23,37 +23,51 @@
             </thead>
             <tbody>
             <% candidaturas.forEach(function(candidatura) { %>
-              <tr>
-                <th scope="row"></th>
-                <td><%= candidatura.nome %></td>
-                <td><a href="/curriculos/<%= candidatura.curriculo %>"><button type="button" class="btn btn-light">Prévia</button></a></td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-success">✓</button>
-
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" onclick="cancelarCandidatura( +<%= candidatura.id_usuario %>+ )">X</button>
-                        
-                        <div class="modal fade teste<%= candidatura.id_usuario %>" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">Tem certeza que deseja cancelar a candidatura de <span class="badge badge-primary"><%= candidatura.nome%></span> para a vaga <span class="badge badge-info"><%= candidatura.titulo %></span>?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+              
+                <% if(candidatura.status_candidatura == "aprovado") {%>
+                  <tr>
+                    <th scope="row" style="background-color: chartreuse; color: black; width: 200px;">Candidato Aprovado!</th>
+                    <td colspan="3"><b>Email de <span style="text-transform: uppercase;"><%= candidatura.nome %></span> para contato:</b> <%= candidatura.email %></td>
+                  </tr>
+                <% }else if(candidatura.status_candidatura == "reprovado") {%>
+                  <tr>
+                    <th scope="row" style="color: black; background-color: brown;">Candidato Reprovado!</th>
+                    <td colspan="3">Rever candidatura de <%= candidatura.nome %>? <a href="/emAndamento/<%= candidatura.id_candidatura%>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-info btn-sm">Rever</button></a></td>
+                  </tr>
+                <% }else{ %> 
+                  <tr> 
+                    <th scope="row" style="color: black; background-color: darkcyan;">Candidatura em análise</th>
+                    <td><%= candidatura.nome %></td>
+                    <td><a href="/curriculos/<%= candidatura.curriculo %>"><button type="button" class="btn btn-light">Prévia</button></a></td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="/aprovarCandidatura/<%= candidatura.id_candidatura%>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-success">✓</button></a>
+  
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" onclick="cancelarCandidatura( +<%= candidatura.id_usuario %>+ )">X</button>
+                            
+                            <div class="modal fade teste<%= candidatura.id_usuario %>" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">Tem certeza que deseja cancelar a candidatura de <span class="badge badge-primary"><%= candidatura.nome%></span> para a vaga <span class="badge badge-info"><%= candidatura.titulo %></span>?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/cancelarCandidatura/<%= candidatura.id_candidatura %>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-success">Sim</button></a>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <a href="/cancelarCandidatura/<%= candidatura.id_candidatura %>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-success">Sim</button></a>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-                                </div>
-                            </div>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                      </div>
-                </td>
-              </tr>
-            <% }) %>
+                    </td>
+                  </tr>
+                <% } %>
+                
+            <% }) %> 
+              
             </tbody>
           </table>
     </div>
