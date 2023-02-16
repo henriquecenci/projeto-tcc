@@ -15,7 +15,6 @@ const vagaController = {
         res.redirect('/usuario/'+id_usuario);
     },
     
-    //------------------------------------------------------------------------------------------------------------------------------
 
     listar: (req, res) => {
         var perPage = 5
@@ -55,8 +54,6 @@ const vagaController = {
         });
     },
 
-    //------------------------------------------------------------------------------------------------------------------------------
-
     pesquisa: (req, res, pesquisa) => {
         var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario WHERE titulo LIKE '%"+pesquisa+"%' AND usuario.id_usuario = vaga.id_usuario ORDER BY id_vaga DESC;"
         
@@ -68,9 +65,7 @@ const vagaController = {
                     res.render('vagas-2.ejs', { vagas: result, logado: null})
         });
     },
-
-    //------------------------------------------------------------------------------------------------------------------------------
-
+    
     filtrar: (req, res, salario, cidade, tipo, turno) => {
 
         var sql = "SELECT usuario.*, vaga.* FROM vaga JOIN usuario ON usuario.id_usuario = vaga.id_usuario"

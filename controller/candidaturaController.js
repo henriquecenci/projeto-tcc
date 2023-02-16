@@ -71,7 +71,7 @@ const candidaturaController = {
         },
 
         cancelarCandidatura: (req, res, id_candidatura, id_vaga) => {
-            var sql = "UPDATE candidatura SET status_candidatura = 'reprovado' WHERE id_candidatura ="+id_candidatura+""
+            var sql = "UPDATE candidatura SET status_candidatura = 'reprovado' WHERE id_candidatura = "+id_candidatura+""
             
             con.query(sql, function (err, result) {
                 if (err) throw err;

@@ -31,12 +31,12 @@
                   </tr>
                 <% }else if(candidatura.status_candidatura == "reprovado") {%>
                   <tr>
-                    <th scope="row" style="color: black; background-color: brown;">Candidato Reprovado!</th>
+                    <th scope="row" style="color: black; background-color: brown; width: 200px;">Candidato Reprovado!</th>
                     <td colspan="3">Rever candidatura de <%= candidatura.nome %>? <a href="/emAndamento/<%= candidatura.id_candidatura%>/<%= candidatura.id_vaga %>"><button type="button" class="btn btn-info btn-sm">Rever</button></a></td>
                   </tr>
                 <% }else{ %> 
                   <tr> 
-                    <th scope="row" style="color: black; background-color: darkcyan;">Candidatura em análise</th>
+                    <th scope="row" style="color: black; background-color: darkcyan; width: 200px;">Candidatura em análise</th>
                     <td><%= candidatura.nome %></td>
                     <td><a href="/curriculos/<%= candidatura.curriculo %>"><button type="button" class="btn btn-light">Prévia</button></a></td>
                     <td>
